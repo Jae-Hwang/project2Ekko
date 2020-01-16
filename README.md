@@ -6,6 +6,7 @@ Fermin Cuanelt
 Jae Hwang
 Jean George
 
+**Description:**
 A social media app which aggregates user's friends feed.
 
-Also features current news & weather information.
+Also features Current News & Weather Information.
