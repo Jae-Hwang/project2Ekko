@@ -5,7 +5,7 @@
 Airton Prado  
 Fermin Cuanelt  
 Jae Hwang  
-Jean George  
+Jean George 
 
 **Description:**  
 A social media app which aggregates user's friends feed.  
