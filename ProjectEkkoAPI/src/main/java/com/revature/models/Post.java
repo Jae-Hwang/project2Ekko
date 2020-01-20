@@ -10,7 +10,7 @@ public class Post {
 	
 	private User owner;
 	
-	private List<Reaction> reactions;
-	
 	private List<Comment> comments;
+	
+	private List<Reaction> reactions;
 }
