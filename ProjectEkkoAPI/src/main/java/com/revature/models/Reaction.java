@@ -5,4 +5,6 @@ public class Reaction {
 	private int id;
 	
 	private User owner;
+	
+	private int type;
 }
