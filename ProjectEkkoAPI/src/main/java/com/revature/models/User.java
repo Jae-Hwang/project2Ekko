@@ -1,7 +1,5 @@
 package com.revature.models;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -72,18 +70,4 @@ public class User {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
 	}
 
-	/*
-	private List<User> friends;
-	
-	private List<Post> posts;
-	
-	private List<Comment> comments;
-	
-	private List<Reaction> reactions;
-	
-	private List<FriendRequest> friendRequests;
-	*/
-	
-	
-	
 }
