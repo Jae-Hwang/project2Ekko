@@ -16,7 +16,7 @@ Configuration:
       fileName: ${LOGS_PATH}/issues.log
       Filters:
         ThresholdFilter:
-          level: warn
+          level: WARN
   Loggers:
     Root:
       AppenderRef:
