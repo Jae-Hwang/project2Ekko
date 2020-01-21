@@ -18,8 +18,9 @@ public class TestDriverUser {
 
 		UserDao dao = (UserDao) ac.getBean("userDaoImpl");
 
-		User a = new User(1, "airton", "password");
+		User a = new User(5, "jae", "manager");
 		dao.save(a);
-		User u = dao.findByUsernamePassword("airton", "password");
+		User u = dao.findByUsernamePassword("jae", "manager");
+		System.out.println(u);
 	}
 }
