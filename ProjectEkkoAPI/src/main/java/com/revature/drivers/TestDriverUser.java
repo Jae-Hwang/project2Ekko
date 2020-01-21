@@ -13,6 +13,6 @@ public class TestDriverUser {
 	IUserDao dao = (IUserDao) ac.getBean("userDao");
 	
 	User a = new User(1,"airton","password");
-	dao.save(a); 
+	//dao.save(a); 
 	User u = dao.findByUsernamePassword("airton", "password");
 }
