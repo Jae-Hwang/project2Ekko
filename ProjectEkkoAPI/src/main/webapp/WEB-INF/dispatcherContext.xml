@@ -15,7 +15,7 @@
 	<!-- This tells the framework where to look for our static we files as well as how to map them -->
 	<mvc:resources location="/static/" mapping="/static/**"></mvc:resources>
 	
-	<bean id="wiewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/static/"></property>
 		<property name="suffix" value=".html"></property>
 	</bean>
