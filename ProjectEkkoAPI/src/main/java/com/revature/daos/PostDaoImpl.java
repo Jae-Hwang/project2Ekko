@@ -66,7 +66,7 @@ public class PostDaoImpl implements PostDao {
 		
 		// creates query
 		CriteriaQuery<Post> selectedQuery = cr.select(root);
-		
+		 
 
 		// creates paging
 		TypedQuery<Post> typedQuery = s.createQuery(selectedQuery);
