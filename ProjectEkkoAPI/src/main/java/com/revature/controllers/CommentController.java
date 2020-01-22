@@ -10,44 +10,43 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.models.Post;
-import com.revature.services.PostService;
+import com.revature.models.Comment;
+import com.revature.services.CommentService;
 import com.revature.util.Log;
 
 @RestController
-public class PostController {
+public class CommentController {
 
 	@Autowired
-	private PostService postService;
-
+	private CommentService commentService;
+	
 	@Autowired
 	private Log log;
-
-	@GetMapping("/posts/{uid}/{page}")
-	public ResponseEntity<List<Post>> findByUserId(@PathVariable("uid") int uid, @PathVariable("page") int page) {
-		log.info("Method: GET, uri: /posts/" + uid + "(user id)/" + page + "(page)");
+	
+	@GetMapping("/comments/{pid}/{page}")
+	private ResponseEntity<List<Comment>> getCommentsByPostId(@PathVariable("pid") int pid, @PathVariable("page") int page) {
+		log.info("Method: GET, uri: /comments/" + pid + "(post id)/" + page + "(page)");
 		
-		List<Post> posts = postService.findByUserId(uid, page);
-		if (posts.size() == 0) {
+		List<Comment> comments = commentService.getCommentsByPostId(pid, page);
+		if (comments.size() == 0) {
 			log.info("No record found.");
 			return ResponseEntity.noContent().build();
 		} else {
-			return ResponseEntity.ok(posts);
+			return ResponseEntity.ok(comments);
 		}
 	}
-
-	@PostMapping("/posts/{uid}")
-	public ResponseEntity<Post> save(@PathVariable("uid") int uid, @RequestBody Post post) {
-		log.info("Method: POST, uri: /posts/" + uid + "(user id)");
+	
+	@PostMapping("/comments/{uid}/{pid}")
+	private ResponseEntity<Comment> save(@PathVariable("uid") int uid, @PathVariable("pid") int pid, @RequestBody Comment comment) {
+		log.info("Method: POST, uri: /comments/" + uid + "(user id)/" + pid + "(post id)");
 		
-		if (post != null) {
-			postService.save(uid, post);
+		if (comment != null) {
+			commentService.save(uid, pid, comment);
 			log.info("Successfully inserted the post");
 			return ResponseEntity.ok().header("X-test", "test").build();
 		} else {
 			log.info("Request Body is not found.");
 			return ResponseEntity.badRequest().build();
 		}
-
 	}
 }
