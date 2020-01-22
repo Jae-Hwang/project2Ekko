@@ -48,9 +48,10 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
+	@Transactional
 	public User FindById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = sf.getCurrentSession();
+		return s.get(User.class, id);
 	}
 
 }
