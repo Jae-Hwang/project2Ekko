@@ -2,6 +2,7 @@ package com.revature.daos;
 
 import java.util.List;
 
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -20,26 +21,61 @@ public class PostDaoImpl implements PostDao {
 
 	@Autowired
 	private SessionFactory sf;
+	
+	private static final int PAGE_COUNT = 10;
 
 	@Override
 	@Transactional
 	public List<Post> findAll(int page) {
+		
+		if (page < 1) {
+			page = 1;
+		}
+		
 		Session s = sf.getCurrentSession();
 		CriteriaBuilder cb = s.getCriteriaBuilder();
 		CriteriaQuery<Post> cr = cb.createQuery(Post.class);
 		Root<Post> root = cr.from(Post.class);
-		cr.select(root);
+		
+		// creates query
+		CriteriaQuery<Post> selectedQuery = cr.select(root);
+		
 
-		Query<Post> query = s.createQuery(cr);
-		List<Post> posts = query.getResultList();
+		// creates paging
+		TypedQuery<Post> typedQuery = s.createQuery(selectedQuery);
+        typedQuery.setFirstResult( (page - 1) * PAGE_COUNT);
+        typedQuery.setMaxResults(PAGE_COUNT);
+
+        // executes query
+		List<Post> posts = typedQuery.getResultList();
 		return posts;
 	}
 
 	@Override
 	@Transactional
 	public List<Post> findByUserId(int uid, int page) {
+		
+		if (page < 1) {
+			page = 1;
+		}
+		
 		Session s = sf.getCurrentSession();
-		return null;
+		CriteriaBuilder cb = s.getCriteriaBuilder();
+		CriteriaQuery<Post> cr = cb.createQuery(Post.class);
+		Root<Post> root = cr.from(Post.class);
+		
+		// creates query
+		CriteriaQuery<Post> selectedQuery = cr.select(root);
+		 
+
+		// creates paging
+		TypedQuery<Post> typedQuery = s.createQuery(selectedQuery);
+        typedQuery.setFirstResult( (page - 1) * PAGE_COUNT);
+        typedQuery.setMaxResults(PAGE_COUNT);
+
+        // executes query
+		List<Post> posts = typedQuery.getResultList();
+		return posts;
 	}
 
 	@Override
