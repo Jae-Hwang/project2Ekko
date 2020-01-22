@@ -23,7 +23,7 @@ public class ReactionController {
 	@Autowired
 	private Log log;
 	
-	@GetMapping("/reactions/{cid}/{page}")
+	@GetMapping("/reactions/comments/{cid}/{page}")
 	public ResponseEntity<List<Reaction>> getReactionsByCommentId(@PathVariable("cid") int cid, @PathVariable("page") int page) {
 		log.info("Method: GET, uri: /reactions/" + cid + "(comment id)/" + page + "(page)");
 		
@@ -36,7 +36,7 @@ public class ReactionController {
 		}
 	}
 	
-	@GetMapping("/reactions/{pid}/{page}")
+	@GetMapping("/reactions/posts/{pid}/{page}")
 	public ResponseEntity<List<Reaction>> getReactionsByPostId(@PathVariable("pid") int pid, @PathVariable("page") int page) {
 		log.info("Method: GET, uri: /reactions/" + pid + "(post id)/" + page + "(page)");
 		
@@ -49,7 +49,7 @@ public class ReactionController {
 		}
 	}
 	
-	@PostMapping("/reactions/{cid}")
+	@PostMapping("/reactions/comments/{cid}")
 	public ResponseEntity<Reaction> saveCommentReaction(@PathVariable("cid") int cid, @RequestBody Reaction reaction) {
 		log.info("Method: POST, uri: /reactions/" + cid + "(comment id)");
 		
@@ -63,7 +63,7 @@ public class ReactionController {
 		}
 	}
 	
-	@PostMapping("/reactions/{cid}")
+	@PostMapping("/reactions/posts/{cid}")
 	public ResponseEntity<Reaction> savePostReaction(@PathVariable("pid") int pid, @RequestBody Reaction reaction) {
 		log.info("Method: POST, uri: /reactions/" + pid + "(post id)");
 		
