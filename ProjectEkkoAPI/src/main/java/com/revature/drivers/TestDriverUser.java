@@ -22,7 +22,7 @@ public class TestDriverUser {
 		//dao.save(a);
 		//User u = dao.findByUsernamePassword("jae", "manager");
 		//System.out.println(u);
-		User u = dao.FindById(102);
+		User u = dao.FindById(152);
 		System.out.println(u);
 	}
 }
