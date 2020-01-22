@@ -65,8 +65,7 @@ public class PostDaoImpl implements PostDao {
 		Root<Post> root = cr.from(Post.class);
 		
 		// creates query
-		CriteriaQuery<Post> selectedQuery = cr.select(root);
-		 
+		CriteriaQuery<Post> selectedQuery = cr.select(root).where(cb.equal(root.get("owner").get("id"), uid));
 
 		// creates paging
 		TypedQuery<Post> typedQuery = s.createQuery(selectedQuery);
@@ -80,10 +79,9 @@ public class PostDaoImpl implements PostDao {
 
 	@Override
 	@Transactional
-	public Post save(Post post) {
+	public void save(Post post) {
 		Session s = sf.getCurrentSession();
 		s.save(post);
-		return null;
 	}
 
 }

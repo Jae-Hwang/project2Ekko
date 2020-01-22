@@ -8,5 +8,5 @@ public interface CommentDao {
 
 	public List<Comment> getCommentsByPostId(int pid, int page);
 
-	public Comment save(Comment comment);
+	public void save(Comment comment);
 }

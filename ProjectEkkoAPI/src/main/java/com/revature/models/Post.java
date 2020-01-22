@@ -41,7 +41,7 @@ public class Post {
 	@OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
 	private Set<Comment> comments;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "parentPost", fetch = FetchType.EAGER)
 	private Set<Reaction> reactions;
 
 	@Column(name = "upserted")
@@ -70,6 +70,11 @@ public class Post {
 		this.comments = comments;
 		this.reactions = reactions;
 		this.upserted = upserted;
+	}
+	
+	public Post(int id) {
+		super();
+		this.id = id;
 	}
 
 	public int getId() {

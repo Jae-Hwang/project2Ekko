@@ -10,7 +10,5 @@ public interface ReactionDao {
 	
 	public List<Reaction> getReactionsByCommentId(int cid, int page);
 	
-	public Reaction addReactionToPost(int pid, Reaction reaction);
-	
-	public Reaction addReactionToComment(int cid, Reaction reaction);
+	public void save(Reaction reaction);
 }

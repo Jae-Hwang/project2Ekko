@@ -42,7 +42,7 @@ public class Comment {
 	@JoinColumn(name = "parent")
 	private Post parent;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "parentComment", fetch = FetchType.EAGER)
 	private Set<Reaction> reactions;
 
 	@Column(name = "upserted")
@@ -71,6 +71,11 @@ public class Comment {
 		this.parent = parent;
 		this.reactions = reactions;
 		this.upserted = upserted;
+	}
+
+	public Comment(int id) {
+		super();
+		this.id = id;
 	}
 
 	public int getId() {
@@ -123,7 +128,7 @@ public class Comment {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(content, id, owner, parent, reactions, upserted);
+		return Objects.hash(content, id, owner, reactions, upserted);
 	}
 
 	@Override
@@ -136,14 +141,13 @@ public class Comment {
 		}
 		Comment other = (Comment) obj;
 		return Objects.equals(content, other.content) && id == other.id && Objects.equals(owner, other.owner)
-				&& Objects.equals(parent, other.parent) && Objects.equals(reactions, other.reactions)
-				&& Objects.equals(upserted, other.upserted);
+				&& Objects.equals(reactions, other.reactions) && Objects.equals(upserted, other.upserted);
 	}
 
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", content=" + content + ", owner=" + owner + ", parent=" + parent + ", reactions="
-				+ reactions + ", upserted=" + upserted + "]";
+		return "Comment [id=" + id + ", content=" + content + ", owner=" + owner + ", reactions=" + reactions
+				+ ", upserted=" + upserted + "]";
 	}
 
 }

@@ -33,16 +33,31 @@ public class Reaction {
 	@Column(name = "type")
 	private int type;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "parent_post")
+	private Post parentPost;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "parent_comment")
+	private Comment parentComment;
+
 	public Reaction() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reaction(int id, User owner, int type) {
+	public Reaction(int id, User owner, int type, Post parentPost, Comment parentComment) {
 		super();
 		this.id = id;
 		this.owner = owner;
 		this.type = type;
+		this.parentPost = parentPost;
+		this.parentComment = parentComment;
+	}
+
+	public Reaction(int id) {
+		super();
+		this.id = id;
 	}
 
 	public int getId() {
@@ -67,6 +82,22 @@ public class Reaction {
 
 	public void setType(int type) {
 		this.type = type;
+	}
+
+	public Post getParentPost() {
+		return parentPost;
+	}
+
+	public void setParentPost(Post parentPost) {
+		this.parentPost = parentPost;
+	}
+
+	public Comment getParentComment() {
+		return parentComment;
+	}
+
+	public void setParentComment(Comment parentComment) {
+		this.parentComment = parentComment;
 	}
 
 	@Override
