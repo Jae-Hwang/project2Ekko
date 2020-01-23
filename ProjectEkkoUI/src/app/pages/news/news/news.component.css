@@ -1,0 +1,22 @@
+#newsContainer{
+    width: 95%;
+    padding-top: 150px;
+    margin: 0 auto;
+}
+
+.card-text{
+    font-size: 14px;
+}
+
+.card-title:hover{
+    text-decoration: none !important;
+}
+
+.border img {
+    transition: .25s ease;
+    }
+    
+    .border img:hover{
+    box-shadow: 0 0 0 5px #5d68f6d2;
+    transition: .25s ease;
+    }

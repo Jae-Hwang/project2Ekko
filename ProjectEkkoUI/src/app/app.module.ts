@@ -3,10 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { NewsComponent } from './news/news/news.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
+import { NewsComponent } from './pages/news/news/news.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { SearchComponent } from './pages/food/search/search.component';
+import { ResultComponent } from './pages/food/result/result.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NewsBarComponent } from './pages/news/news-bar/news-bar.component';
 
 @NgModule({
   declarations: [
@@ -14,9 +18,13 @@ import { FooterComponent } from './shared/footer/footer.component';
     PageNotFoundComponent,
     NavBarComponent,
     NewsComponent,
-    FooterComponent
+    FooterComponent,
+    SearchComponent,
+    ResultComponent,
+    NewsBarComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule
   ],
