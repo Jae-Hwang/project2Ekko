@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "reactions")
 @Component
@@ -33,10 +35,12 @@ public class Reaction {
 	@Column(name = "type")
 	private int type;
 
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "parent_post")
 	private Post parentPost;
 
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "parent_comment")
 	private Comment parentComment;

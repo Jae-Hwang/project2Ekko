@@ -14,7 +14,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.models.Comment;
-import com.revature.models.Post;
 
 @Repository
 public class CommentDaoImpl implements CommentDao {
@@ -27,25 +26,25 @@ public class CommentDaoImpl implements CommentDao {
 	@Override
 	@Transactional
 	public List<Comment> getCommentsByPostId(int pid, int page) {
-		
+
 		if (page < 1) {
 			page = 1;
 		}
-		
+
 		Session s = sf.getCurrentSession();
 		CriteriaBuilder cb = s.getCriteriaBuilder();
 		CriteriaQuery<Comment> cr = cb.createQuery(Comment.class);
 		Root<Comment> root = cr.from(Comment.class);
-		
+
 		// creates query
 		CriteriaQuery<Comment> selectedQuery = cr.select(root).where(cb.equal(root.get("parent").get("id"), pid));
 
 		// creates paging
 		TypedQuery<Comment> typedQuery = s.createQuery(selectedQuery);
-        typedQuery.setFirstResult( (page - 1) * PAGE_COUNT);
-        typedQuery.setMaxResults(PAGE_COUNT);
+		typedQuery.setFirstResult((page - 1) * PAGE_COUNT);
+		typedQuery.setMaxResults(PAGE_COUNT);
 
-        // executes query
+		// executes query
 		List<Comment> comments = typedQuery.getResultList();
 		return comments;
 	}

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { Observable } from 'rxjs';
 
 import { News } from './news.model';
@@ -9,8 +9,8 @@ import { News } from './news.model';
 })
 export class NewsService {
 
-  // private newsApiKey = `https://newsapi.org/v2/top-headlines?country=us&apiKey=ebf4bd89e8cc4bde97eacbaf2b8662bf`;
-  private newsApiKey = '';
+  private newsApiKey = `https://newsapi.org/v2/top-headlines?country=us&apiKey=ebf4bd89e8cc4bde97eacbaf2b8662bf`;
+  // private newsApiKey = '';
   
   constructor( private httpClient:HttpClient) { }
 

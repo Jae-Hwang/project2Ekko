@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { News } from '../news.model';
 import { NewsService} from '../news.service';
 
@@ -14,7 +13,7 @@ export class NewsComponent implements OnInit {
   news: News;
   newsCollection: any[];
 
-  constructor( private newsService: NewsService, private httpClient: HttpClient) { }
+  constructor( private newsService: NewsService) { }
 
   ngOnInit() {
     this.newsService.getNews()

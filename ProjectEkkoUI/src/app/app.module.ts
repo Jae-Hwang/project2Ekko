@@ -3,27 +3,31 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { NewsModule } from './news/news.module';
-import { FoodModule } from './food/food.module';
-import { HttpClientModule } from '@angular/common/http';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
+import { NewsComponent } from './pages/news/news/news.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { SearchComponent } from './pages/food/search/search.component';
+import { ResultComponent } from './pages/food/result/result.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    NavBarComponent
+    NavBarComponent,
+    NewsComponent,
+    FooterComponent,
+    SearchComponent,
+    ResultComponent
     
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
-    NewsModule,
-    AppRoutingModule,
-    FoodModule,
-    HttpClientModule
+    AppRoutingModule
   ],
-  providers: [NewsModule],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
