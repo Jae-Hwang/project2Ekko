@@ -1,34 +1,38 @@
-<DIV style="width: 90%">
-<div class="card-deck">
-    <div class="card">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRDziAv4VGfSTb4blvObw2gxgrPKPXKAFhofBjWSbPV4dLmrbc&s" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
+<!-- 
+    <div class="card bg-dark text-white" *ngFor="let news of newsCollection">
+        <img id="urlToImage" src="{{ news.urlToImage }}" class="card-img" alt="...">
+        <div class="card-img-overlay">
+          <h5 class="card-title">{{ news.title }}</h5>
+          <p class="card-text">{{ news.description }}</p>
+          <p class="card-text">{{ news.author }}</p>
+        </div>
+      </div> -->
+
+      <!-- <div class="card mb-3" style="max-width: 540px;" *ngFor="let news of newsCollection">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{{ news.urlToImage }}" class="card-img" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ news.title }}</h5>
+              <p class="card-text">{{ news.description }}</p>
+              <p class="card-text"><small class="text-muted">{{ news.author }}</small></p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+    <div id="newsContainer" class="border row row-cols-1 row-cols-md-4">
+        <div class="col mb-4" *ngFor="let news of newsCollection">
+          <div class="card">
+            <a href=" {{ news.url }}">
+            <img src="{{ news.urlToImage }}" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title"><a href="{{ news.url }}">{{ news.title }}</a></h5>
+              <p class="card-text">{{ news.description }}</p>
+            </div>
+          </div>
+        </div>
     </div>
-    <div class="card">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRDziAv4VGfSTb4blvObw2gxgrPKPXKAFhofBjWSbPV4dLmrbc&s" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRDziAv4VGfSTb4blvObw2gxgrPKPXKAFhofBjWSbPV4dLmrbc&s" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
-  </div>
-</DIV>
