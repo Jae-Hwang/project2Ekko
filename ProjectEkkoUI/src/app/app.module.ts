@@ -6,13 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NewsComponent } from './news/news/news.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     NavBarComponent,
-    NewsComponent
+    NewsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
