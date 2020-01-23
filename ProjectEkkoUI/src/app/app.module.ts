@@ -10,6 +10,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { SearchComponent } from './pages/food/search/search.component';
 import { ResultComponent } from './pages/food/result/result.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NewsBarComponent } from './pages/news/news-bar/news-bar.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +20,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     NewsComponent,
     FooterComponent,
     SearchComponent,
-    ResultComponent
-    
+    ResultComponent,
+    NewsBarComponent
   ],
   imports: [
     HttpClientModule,
