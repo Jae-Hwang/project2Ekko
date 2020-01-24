@@ -16,7 +16,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/logging")
+	@GetMapping("/login")
 	public ResponseEntity<User> findByUsernamePassword(@RequestBody User u) {
 		//log.info("Method: GET, uri: /logging/");
 		

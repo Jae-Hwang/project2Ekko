@@ -1,5 +1,6 @@
 package com.revature.daos;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -63,6 +64,13 @@ public class FriendListDaoImpl implements FriendListDao {
 		update.set("friends", newFriends);
 		update.where(cb.equal(root.get("owner"), owner));
 		s.createQuery(update).executeUpdate();
+	}
+
+	@Override
+	public void saveFriends(int owner, User friend) {
+		Session s = sf.getCurrentSession();
+		List<User> friends = new ArrayList<User>();
+		
 	}
 	
 	
