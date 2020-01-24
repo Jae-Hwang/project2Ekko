@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +12,7 @@ import { SearchComponent } from './pages/food/search/search.component';
 import { ResultComponent } from './pages/food/result/result.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NewsBarComponent } from './pages/news/news-bar/news-bar.component';
+import { SearchService } from './pages/food/search/search.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { NewsBarComponent } from './pages/news/news-bar/news-bar.component';
   imports: [
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

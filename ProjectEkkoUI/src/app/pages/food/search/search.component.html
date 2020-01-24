@@ -1,19 +1,21 @@
-<div id='mainField' class='main mt-5'>
-    <h1 class='text-white m-0 p-3 '>  So, what we working with?
-        <i class="fas fa-shopping-basket mr-2"></i>
-        <!-- <i class="fas fa-wine-glass-alt"></i> -->
-        <span class='plus'>
-            <i class="fas fa-plus float-right"></i>
-        </span>
-    </h1>
-    <input id='mainInput' type="text" placeholder="Add Ingredients Here">
-    <ul id='mainUl' class='list-group list-unstyled m-0 p-0'>
-        <!-- <li class='list-item'>
-            <span class='trash'>
-                <i class="fas fa-trash-alt"></i>
-            </span>
-            Brocolli
-        </li> -->
-    </ul>
-    <button id='submitButton' type="button" class="btn btn-warning">I'm hungry</button>
+<div class="input-group mb-3">
+  <input [(ngModel)]='foodQuery' [value]='foodQuery' type="text" class="form-control" placeholder="What we feeling like today?" aria-label="Input Food" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button (click)="getResults(foodQuery)" class="btn btn-outline-success" type="button">Button</button>
+  </div>
+</div>
+
+<div id='searchContainer' class="card-deck">
+
+  <div class="card" *ngFor="let result of results">
+    <img class="card-img-top" src="{{ result.recipe.image }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ result.recipe.label }}</h5>
+      <p class="card-text">{{ result.recipe.source }}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+
 </div>

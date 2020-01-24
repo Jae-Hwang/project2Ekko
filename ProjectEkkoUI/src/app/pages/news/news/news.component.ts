@@ -17,12 +17,15 @@ export class NewsComponent implements OnInit {
   constructor( private newsService: NewsService) { }
 
   ngOnInit() {
-    this.newsService.getNews()
+    this.getNewsComponent('top-headlines?country=us');
+  }
+
+  getNewsComponent(category: String){
+    this.newsService.getNews(category)
     .subscribe
     (data => {
       this.newsCollection = data.articles;
     });
   }
-
 
 }
