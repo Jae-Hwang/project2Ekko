@@ -10,5 +10,7 @@ public interface PostDao {
 	
 	public List<Post> findByUserId(int uid, int page);
 	
-	public Post save(Post post);
+	public void save(Post post);
+	
+	public int getMaxPageUserId(int uid);
 }

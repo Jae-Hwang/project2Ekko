@@ -1,0 +1,14 @@
+<app-news-bar></app-news-bar>
+    <div id="newsContainer" class="border row row-cols-1 row-cols-md-4">
+        <div class="col mb-4" *ngFor="let news of newsCollection">
+          <div class="card">
+            <a href=" {{ news.url }}" target="_blank">
+            <img src="{{ news.urlToImage }}" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title"><a href="{{ news.url }}" target="_blank">{{ news.title }}</a></h5>
+              <p class="card-text">{{ news.description }}</p>
+            </div>
+          </div>
+        </div>
+    </div>
