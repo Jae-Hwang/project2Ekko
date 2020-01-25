@@ -11,9 +11,9 @@ import { Post } from 'src/app/models/post.model';
 })
 export class TestPageComponent implements OnInit {
 
-  user1 = new AppUser('User1');
-  user2 = new AppUser('User2');
-  user3 = new AppUser('User3');
+  user1 = new AppUser(1, 'User1', 'pass');
+  user2 = new AppUser(1, 'User2', 'pass');
+  user3 = new AppUser(1, 'User3', 'pass');
 
   reactionsComment1: Reaction[] = [
     new Reaction(1, this.user3, 1),
