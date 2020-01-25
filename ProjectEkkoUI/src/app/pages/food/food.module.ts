@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from './search/search.component';
-import { ResultComponent } from './result/result.component';
-
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [SearchComponent, ResultComponent],
+  declarations: [
+    SearchComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
+  ],
+  exports: [
+    SearchComponent
   ]
 })
 export class FoodModule { }

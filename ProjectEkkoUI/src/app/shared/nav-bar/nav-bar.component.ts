@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { NewsComponent } from 'src/app/pages/news/news/news.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor( ) { }
 
   ngOnInit() {
   }
