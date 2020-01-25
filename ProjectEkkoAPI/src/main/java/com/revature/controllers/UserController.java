@@ -16,7 +16,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public ResponseEntity<User> findByUsernamePassword(@RequestBody User u) {
 		//log.info("Method: GET, uri: /logging/");
 		
@@ -28,6 +28,7 @@ public class UserController {
 			return ResponseEntity.ok(user);
 		}
 	}
+	
 	
 	@PostMapping("/register")
 	public ResponseEntity<User> save(@RequestBody User u) {

@@ -36,7 +36,13 @@ public class UserDaoImpl implements UserDao{
 		
 		Query<User> query = s.createQuery(cr);
 		List<User> Finaluser = query.getResultList();
-		return Finaluser.get(0);
+		User out = new User();
+		for (User u : Finaluser) {
+			out.setId(u.getId());
+			out.setUsername(u.getUsername());
+			out.setPassword("****");
+		}
+		return out;
 	}
 
 	@Override

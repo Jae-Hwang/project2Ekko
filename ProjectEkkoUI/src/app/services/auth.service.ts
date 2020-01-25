@@ -9,6 +9,8 @@ import { ReplaySubject, Subject } from 'rxjs';
 })
 export class AuthService {
 
+  user: AppUser = null;
+
   private currentUserStream = new ReplaySubject<AppUser>(1);
   $currentUser = this.currentUserStream.asObservable();
 
@@ -17,19 +19,7 @@ export class AuthService {
 
 
   constructor(private httpClient: HttpClient, private router: Router) {
-    this.httpClient.get<AppUser>('http://localhost:8080/ProjectEkko/session', {
-      withCredentials: true
-    }).subscribe(
-      data => {
-        if (data === null) {
-          this.router.navigateByUrl('/login');
-        } else {
-          this.currentUserStream.next(data);
-        }
-      },
-      err => {
-      }
-    );
+    this.router.navigateByUrl('/login');
   }
 
   login(credentials) {
@@ -37,8 +27,13 @@ export class AuthService {
       withCredentials: true
     }).subscribe(
       data => {
+        if (data.username !== null) {
         this.router.navigateByUrl('');
+        this.user = data;
         this.currentUserStream.next(data);
+        } else {
+          this.loginErrorStream.next('Failed to Login');
+        }
       },
       err => {
         this.loginErrorStream.next('Failed to Login');
@@ -47,15 +42,10 @@ export class AuthService {
   }
 
   logout() {
-    this.currentUserStream.next(null);
-    this.httpClient.post('http://localhost:8080/ProjectEkko/logout', {
-      withCredentials: true
-    }).subscribe(
-      data => {
-      },
-      err => {
-      }
-    );
+    if (this.user !== null || this.user.username !== null) {
+      this.currentUserStream.next(null);
+      this.router.navigateByUrl('');
+    }
   }
 
 }

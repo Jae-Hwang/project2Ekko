@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.logout();
 
     this.errorMessageSubscription = this.authService.$loginError.subscribe(errorMessage => {
       this.errorMessage = errorMessage;
