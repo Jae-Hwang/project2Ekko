@@ -9,4 +9,6 @@ public interface CommentDao {
 	public List<Comment> getCommentsByPostId(int pid, int page);
 
 	public void save(Comment comment);
+
+	public int getMaxPageByPostId(int pid);
 }

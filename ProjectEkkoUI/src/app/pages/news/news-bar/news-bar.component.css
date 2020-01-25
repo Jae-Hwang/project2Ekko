@@ -1,0 +1,13 @@
+#subNewsBar{
+    position: fixed;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.navitem:hover{
+    cursor: pointer !important;
+}
+
+.navitem{
+    cursor: pointer !important;
+}

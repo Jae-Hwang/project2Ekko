@@ -69,6 +69,8 @@ public class TestDriver {
 		for (Reaction reaction : reactions) {
 			log.info(reaction);
 		}
+		
+		log.info("Page count for Reaction with pid 753: " + reactionDao.getMaxPagePostReaction(753));
 
 	}
 }

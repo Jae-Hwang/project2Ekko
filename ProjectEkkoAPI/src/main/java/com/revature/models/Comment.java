@@ -20,6 +20,9 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "comments")
 @Component
@@ -38,10 +41,12 @@ public class Comment {
 	@JoinColumn(name = "owner", referencedColumnName = "user_id")
 	private User owner;
 
-	@ManyToOne
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "parent")
 	private Post parent;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "parentComment", fetch = FetchType.EAGER)
 	private Set<Reaction> reactions;
 
@@ -69,6 +74,15 @@ public class Comment {
 		this.content = content;
 		this.owner = owner;
 		this.parent = parent;
+		this.reactions = reactions;
+		this.upserted = upserted;
+	}
+
+	public Comment(int id, String content, User owner, Set<Reaction> reactions, Date upserted) {
+		super();
+		this.id = id;
+		this.content = content;
+		this.owner = owner;
 		this.reactions = reactions;
 		this.upserted = upserted;
 	}

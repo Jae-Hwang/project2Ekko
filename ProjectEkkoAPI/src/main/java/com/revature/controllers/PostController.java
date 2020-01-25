@@ -3,6 +3,7 @@ package com.revature.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +33,7 @@ public class PostController {
 			log.info("No record found.");
 			return ResponseEntity.noContent().build();
 		} else {
-			return ResponseEntity.ok(posts);
+			return ResponseEntity.status(HttpStatus.OK).header("X-test", "test").body(posts);
 		}
 	}
 

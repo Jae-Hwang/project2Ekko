@@ -1,0 +1,7 @@
+<div>
+    <button 
+        type="button" 
+        class="btn btn-secondary reactionbutton" 
+        *ngFor='let entry of uniqueList'
+        (click)='clickReaction(entry)'>{{entry}} : {{reactionMap.get(entry)}}</button>
+</div>

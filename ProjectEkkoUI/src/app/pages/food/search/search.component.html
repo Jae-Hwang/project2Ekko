@@ -1,0 +1,41 @@
+<div class="input-group mb-3">
+  <input [(ngModel)]='foodQuery' [value]='foodQuery' type="text" class="form-control" placeholder="What we feeling like today?" aria-label="Input Food" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button (click)="getResults(foodQuery)" class="btn btn-outline-success" type="button">Entice Me!</button>
+  </div>
+</div>
+
+<!-- <div id='searchContainer' class="card-deck">
+  <div class="card" *ngFor="let result of results">
+    <img class="card-img-top" src="{{ result.recipe.image }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ result.recipe.label }}</h5>
+      <p class="card-text">{{ result.recipe.source }}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div> -->
+  
+  <div id="searchContainer" class="border row row-cols-1 row-cols-md-5">
+    <div class="col mb-4" *ngFor="let result of results">
+      <div class="card h-100">
+        <a href="{{ result.recipe.url }}" target="_blank">
+        <img src="{{ result.recipe.image }}" class="card-img-top" alt="...">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title"><em><a href="{{ result.recipe.url }}" target="_blank"> {{ result.recipe.label }}</a></em></h5>
+          <ul>
+            <li>{{ result.recipe.ingredientLines[0] }}</li>
+            <li>{{ result.recipe.ingredientLines[1] }}</li>
+            <li>{{ result.recipe.ingredientLines[2] }}</li>
+            <li>{{ result.recipe.ingredientLines[3] }}</li>
+            <li>{{ result.recipe.ingredientLines[4] }}</li>
+            <p id="liP">Open link for more details...</p>
+          </ul>
+          <p class="card-text"><a href="{{ result.recipe.shareAs }}" target="_blank">{{ result.recipe.source}}</a></p>
+        </div>
+      </div>
+    </div>
+
+</div>

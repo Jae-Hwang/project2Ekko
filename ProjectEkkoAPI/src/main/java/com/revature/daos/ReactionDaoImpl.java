@@ -14,12 +14,16 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.models.Reaction;
+import com.revature.util.Log;
 
 @Repository
 public class ReactionDaoImpl implements ReactionDao {
 
 	@Autowired
 	private SessionFactory sf;
+
+	@Autowired
+	private Log log;
 
 	private static final int PAGE_COUNT = 10;
 
@@ -63,7 +67,8 @@ public class ReactionDaoImpl implements ReactionDao {
 		Root<Reaction> root = cr.from(Reaction.class);
 
 		// creates query
-		CriteriaQuery<Reaction> selectedQuery = cr.select(root).where(cb.equal(root.get("parentComment").get("id"), cid));
+		CriteriaQuery<Reaction> selectedQuery = cr.select(root)
+				.where(cb.equal(root.get("parentComment").get("id"), cid));
 
 		// creates paging
 		TypedQuery<Reaction> typedQuery = s.createQuery(selectedQuery);
@@ -82,4 +87,35 @@ public class ReactionDaoImpl implements ReactionDao {
 		s.save(reaction);
 	}
 
+	@Override
+	@Transactional
+	public int getMaxPagePostReaction(int pid) {
+		Session s = sf.getCurrentSession();
+
+		CriteriaBuilder cb = s.getCriteriaBuilder();
+		CriteriaQuery<Long> cr = cb.createQuery(Long.class);
+		Root<Reaction> root = cr.from(Reaction.class);
+		cr.multiselect(cb.count(root));
+		cr.where(cb.equal(root.get("parentPost").get("id"), pid));
+		long result = s.createQuery(cr).getSingleResult();
+		log.info("Count of result: " + result);
+		int page = (int) Math.ceil(result / (double) PAGE_COUNT);
+		return page;
+	}
+
+	@Override
+	@Transactional
+	public int getMaxPageCommentReaction(int cid) {
+		Session s = sf.getCurrentSession();
+
+		CriteriaBuilder cb = s.getCriteriaBuilder();
+		CriteriaQuery<Long> cr = cb.createQuery(Long.class);
+		Root<Reaction> root = cr.from(Reaction.class);
+		cr.multiselect(cb.count(root));
+		cr.where(cb.equal(root.get("parentComment").get("id"), cid));
+		long result = s.createQuery(cr).getSingleResult();
+		log.info("Count of result: " + result);
+		int page = (int) Math.ceil(result / (double) PAGE_COUNT);
+		return page;
+	}
 }
