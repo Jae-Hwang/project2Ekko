@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { News } from '../news.model';
 import { NewsService} from '../news.service';
-import { NewsBarComponent } from '../news-bar/news-bar.component'
 
 @Component({
   selector: 'app-news',
@@ -13,11 +12,11 @@ export class NewsComponent implements OnInit {
   news$;
   news: News;
   newsCollection: any[];
+  category: String;
 
   constructor( private newsService: NewsService) { }
 
   ngOnInit() {
-    this.getNewsComponent('top-headlines?country=us');
   }
 
   getNewsComponent(category: String){
@@ -25,7 +24,7 @@ export class NewsComponent implements OnInit {
     .subscribe
     (data => {
       this.newsCollection = data.articles;
-    });
+      this.ngOnInit();
+    })
   }
-
 }

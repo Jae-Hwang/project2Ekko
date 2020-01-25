@@ -14,11 +14,11 @@ export class NewsService {
   private apiKey = '&apiKey=ebf4bd89e8cc4bde97eacbaf2b8662bf';
   
   //Individual Query Parameters
-  private worldNews = 'everything?q=worldnews';
-  private usNews = 'top-headlines?country=us';
-  private entertainment = 'top-headlines?country=us&category=entertainment';
-  private sports = 'top-headlines?country=us&category=sports';
-  private business = 'top-headlines?country=us&category=business';
+  private worldNews = this.url + 'everything?q=worldnews' + this.apiKey;
+  private usNews = this.url + 'top-headlines?country=us' + this.apiKey;
+  private entertainment = this.url + 'top-headlines?country=us&category=entertainment' + this.apiKey;
+  private sports = this.url + 'top-headlines?country=us&category=sports' + this.apiKey;
+  private business = this.url + 'top-headlines?country=us&category=business' + this.apiKey;
   
   constructor( private httpClient:HttpClient) { }
 
@@ -26,25 +26,27 @@ export class NewsService {
     console.log("Inside News Server");
     switch (category) {
       case 'worldNews':
-        console.log('worldNews');
-        break;
+        console.log(this.worldNews);
+        return this.httpClient.get(this.worldNews);
+
       case 'usNews':
-        console.log('usNews')
-        break;
-        case 'entertainment':
-          console.log('entertainment')
-        break;
+        console.log(this.usNews);
+        return this.httpClient.get(this.usNews);
+
+      case 'entertainment':
+        console.log(this.entertainment);
+        return this.httpClient.get(this.entertainment);
+
       case 'sports':
-        console.log('sports')
-        break;
-        case 'business':
-          console.log('busness')
-        break;
+        console.log(this.sports);
+        return this.httpClient.get(this.sports);
+
+      case 'business':
+        console.log(this.business);
+        return this.httpClient.get(this.business);
+
       default:
-        break;
-    }
-
-    return this.httpClient.get(this.newsApiKey);
+          return this.httpClient.get(this.newsApiKey);
+        }
   }
-
 }

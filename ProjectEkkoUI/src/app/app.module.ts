@@ -9,10 +9,11 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { NewsComponent } from './pages/news/news/news.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SearchComponent } from './pages/food/search/search.component';
-import { ResultComponent } from './pages/food/result/result.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NewsBarComponent } from './pages/news/news-bar/news-bar.component';
 import { SearchService } from './pages/food/search/search.service';
+import { NewsService } from './pages/news/news.service';
+import { NewsModule } from './pages/news/news.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,6 @@ import { SearchService } from './pages/food/search/search.service';
     NewsComponent,
     FooterComponent,
     SearchComponent,
-    ResultComponent,
     NewsBarComponent
   ],
   imports: [
