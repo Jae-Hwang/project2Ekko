@@ -8,5 +8,7 @@ import com.revature.models.User;
 public interface FriendListDao {
 
 	public List<FriendList> findAll();
-	public List<User> findById(int id);
+	public List<FriendList> findById(int id);
+	public void updateFriends(int onwer, User friend); 
+	public void saveFriends(int owner, User friend);
 }
