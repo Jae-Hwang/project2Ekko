@@ -10,6 +10,8 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { TestPageComponent } from './shared/test-page/test-page.component';
 import { FoodModule } from './pages/food/food.module';
 import { NewsModule } from './pages/news/news.module';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,9 @@ import { NewsModule } from './pages/news/news.module';
     TestPageComponent
   ],
   imports: [
+    FormsModule,
+    AppRoutingModule,
+    RouterModule,
     HttpClientModule,
     AppRoutingModule,
     CommonModule,
