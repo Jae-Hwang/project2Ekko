@@ -9,7 +9,11 @@ const routes: Routes = [
   {path: 'food', component: SearchComponent},
   {path: 'results', component: ResultComponent},
   {path: 'news', component: NewsComponent},
-  {path: '**' , component: PageNotFoundComponent}
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then(mod => mod.LoginModule)
+  },
+  {path: '' , component: PageNotFoundComponent},
 ];
 
 @NgModule({

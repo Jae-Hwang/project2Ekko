@@ -11,6 +11,9 @@ import { SearchComponent } from './pages/food/search/search.component';
 import { ResultComponent } from './pages/food/result/result.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NewsBarComponent } from './pages/news/news-bar/news-bar.component';
+import { LoginComponent } from './pages/login/components/login/login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,12 +24,13 @@ import { NewsBarComponent } from './pages/news/news-bar/news-bar.component';
     FooterComponent,
     SearchComponent,
     ResultComponent,
-    NewsBarComponent
+    NewsBarComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
