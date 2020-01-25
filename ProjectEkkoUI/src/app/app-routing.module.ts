@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then(mod => mod.LoginModule)
   },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then(mod => mod.RegisterModule)
+  },
   {path: '' , component: PageNotFoundComponent},
 ];
 

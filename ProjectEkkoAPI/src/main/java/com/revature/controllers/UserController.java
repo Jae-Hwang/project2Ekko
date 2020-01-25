@@ -33,8 +33,8 @@ public class UserController {
 	@PostMapping("/register")
 	public ResponseEntity<User> save(@RequestBody User u) {
 		//log.info("Method: POST, uri: /register" + user+ u);
-		
-		if (u != null) {
+		User user = userService.findByUsernamePassword(u.getUsername(), u.getPassword());
+		if (user.getUsername() == null) {
 			userService.save(u);
 			//log.info("Successfully registered user");
 			return ResponseEntity.ok().header("X-test", "test").build();
