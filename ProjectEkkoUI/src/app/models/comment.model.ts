@@ -1,6 +1,5 @@
-import { AppUser } from './user.model';
-import { Post } from './post.model';
 import { Reaction } from './reaction.model';
+import { AppUser } from './user.model';
 
 export class Comment {
 
@@ -8,7 +7,6 @@ export class Comment {
         public id = 0,
         public content = '',
         public owner = new AppUser(),
-        public parent = new Post(),
         public reactions: Reaction[] = [],
         public upserted: Date = new Date()
     ) { }

@@ -1,0 +1,11 @@
+.card {
+    margin: 1em;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.upserted {
+    font-size: .8em;
+}
