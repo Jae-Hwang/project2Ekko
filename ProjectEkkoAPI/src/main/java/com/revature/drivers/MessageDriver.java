@@ -17,9 +17,9 @@ public class MessageDriver {
 		DirectMessageDao messDao = (DirectMessageDao) ac.getBean("directMessageDaoImpl");
 		
 		// All work
-		messDao.save(new DirectMessage(1, 1, 2, "This is a test message, hope I'm alive"));
-		messDao.save(new DirectMessage(3, 3, 1, "This is another test message, hope I'm alive and correctly spelt"));
-		messDao.save(new DirectMessage(5, 2, 3, "This is another test message, hope I'm alive but dont show up"));
+//		messDao.save(new DirectMessage(1, 1, 2, "This is a test message, hope I'm alive"));
+//		messDao.save(new DirectMessage(3, 3, 1, "This is another test message, hope I'm alive and correctly spelt"));
+//		messDao.save(new DirectMessage(5, 2, 3, "This is another test message, hope I'm alive but dont show up"));
 //		
 		// And doesn't show the message whose user is not included
 //		messDao.findById(1).forEach(dm -> {

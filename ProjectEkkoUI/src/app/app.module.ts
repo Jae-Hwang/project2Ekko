@@ -14,6 +14,8 @@ import { NewsBarComponent } from './pages/news/news-bar/news-bar.component';
 import { LoginComponent } from './pages/login/components/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { DirMessageComponent } from './core/components/dir-message/dir-message.component';
+import { GroupChatComponent } from './core/components/group-chat/group-chat.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { FormsModule } from '@angular/forms';
     SearchComponent,
     ResultComponent,
     NewsBarComponent,
+    DirMessageComponent,
+    GroupChatComponent,
   ],
   imports: [
     HttpClientModule,

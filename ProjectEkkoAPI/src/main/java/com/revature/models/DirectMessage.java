@@ -80,6 +80,13 @@ public class DirectMessage implements Serializable{
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	
+	public DirectMessage(int user1Id, int user2Id, String message) {
+		super();
+		this.user1Id = user1Id;
+		this.user2Id = user2Id;
+		this.message = message;
+	}
 
 	@Override
 	public int hashCode() {
