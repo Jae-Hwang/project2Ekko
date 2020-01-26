@@ -5,10 +5,6 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-<<<<<<< HEAD
-=======
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
->>>>>>> IntegratingUserIntoPosts
         <property name="context-root" value="ProjectEkko"/>
         <property name="java-output-path" value="/ProjectEkko/target/classes"/>
     </wb-module>

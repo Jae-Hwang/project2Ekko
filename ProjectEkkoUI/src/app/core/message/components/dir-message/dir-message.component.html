@@ -1,1 +1,30 @@
-<p>dir-message works!</p>
+<div id="new-dm">
+    <form class="create-new-dm" (submit)="createNewDM">
+        <h2>Person to DM</h2>
+        <input type="number" id="inputRecieverId" name="input-reciever-id" class="form-control" placeholder="Dan Pickles" required autofocus [(ngModel)]="dirMessages.user2Id">
+
+        <h2>Message</h2>
+        <input type="test" id="inputMessage" name="input-message" class="form-control" placeholder="What's up strippes" required autofocus [(ngModel)]="dirMessages.message">
+
+        <button type="submit">Create DM</button>
+    </form>
+</div>
+<br><br><br>
+<div id="all-dms">
+    <table class="table" id="all-dms-table">
+        <thead>
+            <tr>
+                <th scope="col">User1</th>
+                <th scope="col">User2</th>
+                <th scope="col">UserMessage</th>
+            </tr>
+        </thead>
+        <tbody id="all-dms-body">
+            <tr *ngFor="let allDirMsg of allDirMsgs">
+                <td>{{allDirMsg.user1Id}}</td>
+                <td>{{allDirMsg.user2Id}}</td>
+                <td>{{allDirMsg.message}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

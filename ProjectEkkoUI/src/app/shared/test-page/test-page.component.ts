@@ -3,7 +3,7 @@ import { Reaction } from 'src/app/models/reaction.model';
 import { AppUser } from 'src/app/models/user.model';
 import { Comment } from 'src/app/models/comment.model';
 import { Post } from 'src/app/models/post.model';
-// import { PostService } from 'src/app/services/post.service';
+import { PostService } from 'src/app/services/post.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -46,24 +46,19 @@ export class TestPageComponent implements OnInit, OnDestroy {
   postsSubscription: Subscription;
 
 
-  // constructor(private postService: PostService) { }
-  constructor() { }
+  constructor(private postService: PostService) { }
 
-  // ngOnInit() {
-  //   this.postsSubscription = this.postService.$posts.subscribe(posts => {
-  //     this.testPosts = posts;
-  //   });
-  //   this.postService.getPostsByUserId(153, 1);
-  // }
-
-  // ngOnDestroy() {
-  //   if (this.postsSubscription !== undefined) {
-  //     this.postsSubscription.unsubscribe();
-  //   }
-  // }
   ngOnInit() {
+    this.postsSubscription = this.postService.$posts.subscribe(posts => {
+      this.testPosts = posts;
+    });
+    this.postService.getPostsByUserId(153, 1);
   }
 
   ngOnDestroy() {
+    if (this.postsSubscription !== undefined) {
+      this.postsSubscription.unsubscribe();
+    }
   }
+
 }
