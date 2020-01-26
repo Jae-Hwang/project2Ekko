@@ -31,13 +31,8 @@ public class FriendListController {
 	@GetMapping("/friends/{uid}")
 	public ResponseEntity<List<User>> findall(@PathVariable("uid") int uid) {
 		
-		FriendList friends = FLService.findall(uid);
-		List user = new ArrayList<User>(friends.getUsers());
-//		List names = new ArrayList<String>();
-//		for(int i=0;i<user.size();i++) {
-//			System.out.println(user.get(i));
-//		}
-		if (friends.getUsers().isEmpty()) {
+		List<User> user = FLService.findall(uid);
+		if (user.isEmpty()) {
 			return ResponseEntity.noContent().build();
 		} else {
 			return ResponseEntity.status(HttpStatus.OK).header("X-test", "test").body(user);

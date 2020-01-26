@@ -9,7 +9,7 @@ import { ReplaySubject, Subject } from 'rxjs';
 })
 export class AuthService {
 
-  user: AppUser = null;
+  user = new AppUser(0, null, null);
 
   private currentUserStream = new ReplaySubject<AppUser>(1);
   $currentUser = this.currentUserStream.asObservable();
@@ -42,10 +42,17 @@ export class AuthService {
   }
 
   logout() {
-    if (this.user !== null || this.user.username !== null) {
+    //if (this.user !== null || this.user.username !== null) {
       this.currentUserStream.next(null);
-      this.router.navigateByUrl('');
-    }
+      //this.router.navigateByUrl('');
+    //}
   }
 
+  checkuser() {
+    if (this.user.username === undefined || this.user.username == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

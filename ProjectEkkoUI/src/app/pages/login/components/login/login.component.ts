@@ -31,6 +31,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.login(this.credentials);
   }
 
+  logout() {
+    this.authService.logout();
+  }
 
   ngOnDestroy() {
     //this.errorMessageSubscription.unsubscribe();
