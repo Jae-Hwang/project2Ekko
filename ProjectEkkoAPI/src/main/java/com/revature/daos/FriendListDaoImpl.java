@@ -1,6 +1,7 @@
 package com.revature.daos;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,11 +15,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.models.FriendList;
 import com.revature.models.User;
 
+@Repository
 public class FriendListDaoImpl implements FriendListDao {
 	
 	@Autowired
@@ -26,9 +29,9 @@ public class FriendListDaoImpl implements FriendListDao {
 	
 	@Override
 	@Transactional
-	public List<FriendList> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public FriendList findAll(int owner) {
+		Session s = sf.getCurrentSession();
+		return s.get(FriendList.class,owner);
 	}
 
 	@Override
@@ -47,29 +50,24 @@ public class FriendListDaoImpl implements FriendListDao {
 	}
 
 	@Override
+	@Transactional
 	public void updateFriends(int owner, User friend) {
 		Session s = sf.getCurrentSession();
-		CriteriaBuilder cb = s.getCriteriaBuilder();
-		CriteriaQuery<FriendList> cr = cb.createQuery(FriendList.class);
-		Root<FriendList> root = cr.from(FriendList.class);
-		Predicate userN = cb.equal(root.get("owner"), owner);
-		cr.select(root).where(cb.and(userN));;
-		
-		Query<FriendList> query = s.createQuery(cr);
-		List<FriendList> Friends = query.getResultList();
-		Set<User> newFriends = Friends.get(0).getUsers();
-		newFriends.add(friend);
-		
-		CriteriaUpdate<FriendList> update = cb.createCriteriaUpdate(FriendList.class);
-		update.set("friends", newFriends);
-		update.where(cb.equal(root.get("owner"), owner));
-		s.createQuery(update).executeUpdate();
+		FriendList friends = s.get(FriendList.class,owner);
+		Set<User> users = friends.getUsers();
+		users.add(friend);
+		friends.setUsers(users);
+		s.update(friends);
 	}
 
 	@Override
+	@Transactional
 	public void saveFriends(int owner, User friend) {
 		Session s = sf.getCurrentSession();
-		List<User> friends = new ArrayList<User>();
+		Set<User> friends = new HashSet<User>();
+		friends.add(friend);
+		FriendList fl = new FriendList(owner, friends);
+		s.save(fl);
 		
 	}
 	
