@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.logout();
 
     this.errorMessageSubscription = this.authService.$loginError.subscribe(errorMessage => {
       this.errorMessage = errorMessage;
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
-    this.errorMessageSubscription.unsubscribe();
+    //this.errorMessageSubscription.unsubscribe();
   }
 
 }
