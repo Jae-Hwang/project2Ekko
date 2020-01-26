@@ -40,10 +40,11 @@ public class CommentController {
 	@PostMapping("/comments/{pid}")
 	private ResponseEntity<Comment> save(@PathVariable("pid") int pid, @RequestBody CommentDto commentDto) {
 		log.info("Method: POST, uri: /comments/" + pid + "(post id)");
+		log.info("Data transfered: " + commentDto);
 		
 		if (commentDto != null) {
-			commentService.save(commentDto.getUid(), pid, new Comment());
-			log.info("Successfully inserted the post");
+			commentService.save(commentDto.getUid(), pid, new Comment(commentDto.getContent()));
+			log.info("Successfully inserted the Comment");
 			return ResponseEntity.ok().header("X-test", "test").build();
 		} else {
 			log.info("Request Body is not found.");

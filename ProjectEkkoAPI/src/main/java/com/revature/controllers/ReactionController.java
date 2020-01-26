@@ -77,7 +77,7 @@ public class ReactionController {
 
 		if (reactionDto != null) {
 			reactionService.savePostReaction(pid, new Reaction(reactionDto.getUid(), reactionDto.getType()));
-			log.info("Successfully inserted the post");
+			log.info("Successfully inserted the Reaction");
 			return ResponseEntity.ok().build();
 		} else {
 			log.info("Request Body is not found.");
