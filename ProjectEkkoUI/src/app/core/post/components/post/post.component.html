@@ -1,1 +1,13 @@
-<p>post works!</p>
+<div [ngClass]='class'>
+    <div class="card-body">
+        <div>
+            <p class="card-title">{{post.owner.username}}</p>
+            <p class="card-subtitle mb-2 text-muted upserted">{{post.upserted}}</p>
+        </div>
+        <p class="card-text">{{post.content}}</p>
+        <hr>
+        <app-reactions-container [input-reactions]='post.reactions'></app-reactions-container>
+        <hr>
+        <app-comments-container [input-comments]='post.comments'></app-comments-container>
+    </div>
+</div>

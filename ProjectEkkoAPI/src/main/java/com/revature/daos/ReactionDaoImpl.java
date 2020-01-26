@@ -118,4 +118,10 @@ public class ReactionDaoImpl implements ReactionDao {
 		int page = (int) Math.ceil(result / (double) PAGE_COUNT);
 		return page;
 	}
+
+	@Override
+	public void delete(Reaction reaction) {
+		Session s = sf.getCurrentSession();
+		s.delete(reaction);
+	}
 }

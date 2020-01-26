@@ -15,4 +15,6 @@ public interface ReactionDao {
 	public int getMaxPagePostReaction(int pid);
 
 	public int getMaxPageCommentReaction(int cid);
+	
+	public void delete(Reaction reaction);
 }

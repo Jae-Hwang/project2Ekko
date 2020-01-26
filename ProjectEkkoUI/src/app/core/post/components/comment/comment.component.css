@@ -1,0 +1,16 @@
+.card {
+    margin-top: .5em;
+    font-size: .9em;
+}
+
+.owned-card {
+    border-color: black;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.upserted {
+    font-size: .9em;
+}
