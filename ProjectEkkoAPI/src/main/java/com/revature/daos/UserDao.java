@@ -10,5 +10,6 @@ public interface UserDao {
 	public User FindById(int id);
 	public void makeGroupChat(GroupChat gc);
 	public void addToGroupChat(GroupChat gc);
+	public User findByUsername(String username);
 	
 }

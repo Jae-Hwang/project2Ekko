@@ -30,9 +30,10 @@ public class TestDriverUser {
 		//fdao.findAll();
 		//fdao.saveFriends(1002, u);
 		//fdao.saveFriends(1002, new User(1052,"",""));
-		
-		fdao.updateFriends(1002, new User(1052,"",""));
-		System.out.println(fdao.findAll(1002));
+		User w = dao.findByUsername("fermin");
+		System.out.println(w);
+		//fdao.updateFriends(1002, new User(1052,"",""));
+		//System.out.println(fdao.findAll(1002));
 
 	}
 }

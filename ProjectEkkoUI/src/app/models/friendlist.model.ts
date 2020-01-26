@@ -4,7 +4,7 @@ export class Friendlist {
 
     constructor(
         public owner = 0,
-        public friends: Array<AppUser> = []
+        public users: AppUser[] = [],
     ) { }
 
 }

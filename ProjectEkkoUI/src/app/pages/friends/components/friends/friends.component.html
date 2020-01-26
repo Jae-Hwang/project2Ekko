@@ -1,5 +1,5 @@
 <p>friends works!</p>
-<form class="form-signin" (submit)="save()" id="logform">
+<form class="form-signin" (submit)="update()" id="logform">
     <h1 class="h3 mb-3 font-weight-normal">Follow!</h1>
     <label for="inputUsername" class="sr-only">username</label>
     <input type="text" id="inputUsername" 
@@ -10,5 +10,11 @@
         [(ngModel)]="credentials.username">
     <label for="inputPassword" class="sr-only">Password</label>
     <button class="btn btn-lg btn-secondary btn-block" type="submit">Follow Friends</button>
-
 </form>
+
+<div class="container2">
+    <h1 style="text-decoration: underline;">Following</h1>
+    <li *ngFor="let user of currentTable">
+        {{user.username}}
+    </li>
+</div>

@@ -74,5 +74,26 @@ public class UserDaoImpl implements UserDao{
 		Session s = sf.getCurrentSession();
 		s.update(gc);
 	}
+	
+	@Override
+	@Transactional
+	public User findByUsername(String username) {
+		Session s = sf.getCurrentSession();
+		CriteriaBuilder cb = s.getCriteriaBuilder();
+		CriteriaQuery<User> cr = cb.createQuery(User.class);
+		Root<User> root = cr.from(User.class);
+		Predicate userN = cb.equal(root.get("username"), username);
+		cr.select(root).where(cb.and(userN));;
+		
+		Query<User> query = s.createQuery(cr);
+		List<User> Finaluser = query.getResultList();
+		User out = new User();
+		for (User u : Finaluser) {
+			out.setId(u.getId());
+			out.setUsername(u.getUsername());
+			out.setPassword("****");
+		}
+		return out;
+	}
 
 }
