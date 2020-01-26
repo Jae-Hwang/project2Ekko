@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.Comment;
+import com.revature.models.CommentDto;
 import com.revature.services.CommentService;
 import com.revature.util.Log;
 
@@ -36,13 +37,14 @@ public class CommentController {
 		}
 	}
 	
-	@PostMapping("/comments/{uid}/{pid}")
-	private ResponseEntity<Comment> save(@PathVariable("uid") int uid, @PathVariable("pid") int pid, @RequestBody Comment comment) {
-		log.info("Method: POST, uri: /comments/" + uid + "(user id)/" + pid + "(post id)");
+	@PostMapping("/comments/{pid}")
+	private ResponseEntity<Comment> save(@PathVariable("pid") int pid, @RequestBody CommentDto commentDto) {
+		log.info("Method: POST, uri: /comments/" + pid + "(post id)");
+		log.info("Data transfered: " + commentDto);
 		
-		if (comment != null) {
-			commentService.save(uid, pid, comment);
-			log.info("Successfully inserted the post");
+		if (commentDto != null) {
+			commentService.save(commentDto.getUid(), pid, new Comment(commentDto.getContent()));
+			log.info("Successfully inserted the Comment");
 			return ResponseEntity.ok().header("X-test", "test").build();
 		} else {
 			log.info("Request Body is not found.");

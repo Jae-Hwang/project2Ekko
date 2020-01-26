@@ -59,13 +59,15 @@ public class TestDriver {
 //		reactionDao.save(new Reaction(0, new User(153, "", ""), 1, null, new Comment(1)));
 //		reactionDao.save(new Reaction(0, new User(153, "", ""), 2, null, new Comment(1)));
 //		reactionDao.save(new Reaction(0, new User(153, "", ""), 3, null, new Comment(1)));
+		
+		reactionDao.delete(new Reaction(6));
 
-		List<Reaction> reactions = reactionDao.getReactionsByPostId(753, 1);
+		List<Reaction> reactions = reactionDao.getReactionsByPostId(753);
 		for (Reaction reaction : reactions) {
 			log.info(reaction);
 		}
 
-		reactions = reactionDao.getReactionsByCommentId(1, 1);
+		reactions = reactionDao.getReactionsByCommentId(1);
 		for (Reaction reaction : reactions) {
 			log.info(reaction);
 		}

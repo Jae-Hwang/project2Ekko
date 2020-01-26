@@ -3,6 +3,7 @@ import { Reaction } from 'src/app/models/reaction.model';
 import { Subscription } from 'rxjs';
 import { AppUser } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { ReactionService } from 'src/app/services/reaction.service';
 
 @Component({
   selector: 'app-reactions-container',
@@ -18,12 +19,20 @@ export class ReactionsContainerComponent implements OnInit, OnDestroy {
   @Input('input-reactions')
   reactions: Reaction[];
 
+  // tslint:disable-next-line: no-input-rename
+  @Input('input-type')
+  type: string;
+
+  // tslint:disable-next-line: no-input-rename
+  @Input('input-id')
+  id: number;
+
   reactionMap = new Map<number, number>();
 
   uniqueList: number[];
   usersReaction: Set<number>;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private reactionService: ReactionService) { }
 
   resolveReactions() {
     this.uniqueList = new Array();
@@ -55,10 +64,14 @@ export class ReactionsContainerComponent implements OnInit, OnDestroy {
         this.reactionMap.set(entry, count - 1);
       }
       this.usersReaction.delete(entry);
+      this.reactionService.delete(this.type, this.currentUser.id, this.id);
     } else {
       this.reactionMap.set(entry, count + 1);
       this.usersReaction.add(entry);
+      this.reactionService.save(this.type, this.currentUser.id, this.id, entry);
     }
+
+    console.log(`Type: ${this.type}, id: ${this.id}, reaction: ${entry}`);
   }
 
   addReaction(entry: number) {
@@ -70,6 +83,9 @@ export class ReactionsContainerComponent implements OnInit, OnDestroy {
       this.uniqueList.sort();
     }
     this.usersReaction.add(entry);
+
+    this.reactionService.save(this.type, this.currentUser.id, this.id, entry);
+    console.log(`Type: ${this.type}, id: ${this.id}, reaction: ${entry}`);
   }
 
   userOwned(entry: number) {

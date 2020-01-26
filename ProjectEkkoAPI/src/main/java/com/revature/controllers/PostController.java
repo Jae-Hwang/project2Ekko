@@ -43,7 +43,7 @@ public class PostController {
 		
 		if (post != null) {
 			postService.save(uid, post);
-			log.info("Successfully inserted the post");
+			log.info("Successfully inserted the Post");
 			return ResponseEntity.ok().header("X-test", "test").build();
 		} else {
 			log.info("Request Body is not found.");

@@ -9,11 +9,13 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.models.Reaction;
+import com.revature.models.User;
 import com.revature.util.Log;
 
 @Repository
@@ -29,11 +31,7 @@ public class ReactionDaoImpl implements ReactionDao {
 
 	@Override
 	@Transactional
-	public List<Reaction> getReactionsByPostId(int pid, int page) {
-
-		if (page < 1) {
-			page = 1;
-		}
+	public List<Reaction> getReactionsByPostId(int pid) {
 
 		Session s = sf.getCurrentSession();
 		CriteriaBuilder cb = s.getCriteriaBuilder();
@@ -43,23 +41,17 @@ public class ReactionDaoImpl implements ReactionDao {
 		// creates query
 		CriteriaQuery<Reaction> selectedQuery = cr.select(root).where(cb.equal(root.get("parentPost").get("id"), pid));
 
-		// creates paging
-		TypedQuery<Reaction> typedQuery = s.createQuery(selectedQuery);
-		typedQuery.setFirstResult((page - 1) * PAGE_COUNT);
-		typedQuery.setMaxResults(PAGE_COUNT);
+		Query<Reaction> query = s.createQuery(selectedQuery);
 
 		// executes query
-		List<Reaction> reactions = typedQuery.getResultList();
+		List<Reaction> reactions = query.getResultList();
 		return reactions;
 	}
 
 	@Override
 	@Transactional
-	public List<Reaction> getReactionsByCommentId(int cid, int page) {
+	public List<Reaction> getReactionsByCommentId(int cid) {
 
-		if (page < 1) {
-			page = 1;
-		}
 
 		Session s = sf.getCurrentSession();
 		CriteriaBuilder cb = s.getCriteriaBuilder();
@@ -70,13 +62,10 @@ public class ReactionDaoImpl implements ReactionDao {
 		CriteriaQuery<Reaction> selectedQuery = cr.select(root)
 				.where(cb.equal(root.get("parentComment").get("id"), cid));
 
-		// creates paging
-		TypedQuery<Reaction> typedQuery = s.createQuery(selectedQuery);
-		typedQuery.setFirstResult((page - 1) * PAGE_COUNT);
-		typedQuery.setMaxResults(PAGE_COUNT);
+		Query<Reaction> query = s.createQuery(selectedQuery);
 
 		// executes query
-		List<Reaction> reactions = typedQuery.getResultList();
+		List<Reaction> reactions = query.getResultList();
 		return reactions;
 	}
 
@@ -120,6 +109,7 @@ public class ReactionDaoImpl implements ReactionDao {
 	}
 
 	@Override
+	@Transactional
 	public void delete(Reaction reaction) {
 		Session s = sf.getCurrentSession();
 		s.delete(reaction);
