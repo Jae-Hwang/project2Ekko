@@ -6,6 +6,7 @@ import { ReactionComponent } from './components/reaction/reaction.component';
 import { CommentsContainerComponent } from './components/comments-container/comments-container.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { ReactionsContainerComponent } from './components/reactions-container/reactions-container.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -19,7 +20,8 @@ import { ReactionsContainerComponent } from './components/reactions-container/re
     ReactionsContainerComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgbModule
   ],
   exports: [
     PostComponent,

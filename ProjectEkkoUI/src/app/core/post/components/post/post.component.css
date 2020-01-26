@@ -2,6 +2,10 @@
     margin: 1em;
 }
 
+.owned-card {
+    border-color: black;
+}
+
 .card-title {
     font-weight: bold;
 }

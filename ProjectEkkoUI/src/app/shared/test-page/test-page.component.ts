@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Reaction } from 'src/app/models/reaction.model';
 import { AppUser } from 'src/app/models/user.model';
 import { Comment } from 'src/app/models/comment.model';
 import { Post } from 'src/app/models/post.model';
+import { PostService } from 'src/app/services/post.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-test-page',
   templateUrl: './test-page.component.html',
   styleUrls: ['./test-page.component.css']
 })
-export class TestPageComponent implements OnInit {
+export class TestPageComponent implements OnInit, OnDestroy {
 
-  user1 = new AppUser(1, 'User1', 'pass');
-  user2 = new AppUser(1, 'User2', 'pass');
-  user3 = new AppUser(1, 'User3', 'pass');
+  user1 = new AppUser(152, 'User1', 'pass');
+  user2 = new AppUser(153, 'User2', 'pass');
+  user3 = new AppUser(1052, 'User3', 'pass');
 
   reactionsComment1: Reaction[] = [
     new Reaction(1, this.user3, 1),
@@ -40,9 +42,22 @@ export class TestPageComponent implements OnInit {
 
   testPost = new Post(1, 'This is Post1!', this.user1, this.comments, this.reactionsPost, new Date());
 
-  constructor() { }
+  testPosts: Post[];
+  postsSubscription: Subscription;
+
+
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
+    this.postsSubscription = this.postService.$posts.subscribe(posts => {
+      this.testPosts = posts;
+    });
+    this.postService.getPostsByUserId(153, 1);
   }
 
+  ngOnDestroy() {
+    if (this.postsSubscription !== undefined) {
+      this.postsSubscription.unsubscribe();
+    }
+  }
 }

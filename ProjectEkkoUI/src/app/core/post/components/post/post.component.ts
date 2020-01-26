@@ -1,9 +1,7 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
 import { AppUser } from 'src/app/models/user.model';
-import { Comment } from 'src/app/models/comment.model';
-import { Reaction } from 'src/app/models/reaction.model';
-import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -24,9 +22,9 @@ export class PostComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService) { }
 
-  userOwned(post: Post) {
-    if (post.owner.id === this.currentUser.id) {
-      return '';
+  userOwned() {
+    if (this.post.owner.id === this.currentUser.id) {
+      this.class = 'card owned-card';
     }
   }
 
@@ -34,10 +32,12 @@ export class PostComponent implements OnInit, OnDestroy {
     this.currentUserSubscription = this.authService.$currentUser.subscribe(user => {
       this.currentUser = user;
     });
+
+    this.userOwned();
   }
 
   ngOnDestroy() {
-    if (this.currentUserSubscription !== undefined || !this.currentUserSubscription.closed) {
+    if (this.currentUserSubscription !== undefined) {
       this.currentUserSubscription.unsubscribe();
     }
   }
