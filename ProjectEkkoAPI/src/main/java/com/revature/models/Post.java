@@ -17,8 +17,11 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "posts")
@@ -38,10 +41,12 @@ public class Post {
 	@JoinColumn(name = "owner", referencedColumnName = "user_id")
 	private User owner;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
 	private Set<Comment> comments;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@JsonManagedReference
+	@OneToMany(mappedBy = "parentPost", fetch = FetchType.EAGER)
 	private Set<Reaction> reactions;
 
 	@Column(name = "upserted")
@@ -70,6 +75,11 @@ public class Post {
 		this.comments = comments;
 		this.reactions = reactions;
 		this.upserted = upserted;
+	}
+
+	public Post(int id) {
+		super();
+		this.id = id;
 	}
 
 	public int getId() {
