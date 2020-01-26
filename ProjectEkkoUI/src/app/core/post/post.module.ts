@@ -7,6 +7,9 @@ import { CommentsContainerComponent } from './components/comments-container/comm
 import { CommentComponent } from './components/comment/comment.component';
 import { ReactionsContainerComponent } from './components/reactions-container/reactions-container.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CreateCommentComponent } from './components/create-comment/create-comment.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,11 +20,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactionComponent,
     PostsContainerComponent,
     CommentsContainerComponent,
-    ReactionsContainerComponent
+    ReactionsContainerComponent,
+    CreateCommentComponent,
+    CreatePostComponent
   ],
   imports: [
     CommonModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   exports: [
     PostComponent,

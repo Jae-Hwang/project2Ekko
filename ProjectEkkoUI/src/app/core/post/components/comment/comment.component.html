@@ -8,6 +8,6 @@
             {{comment.content}}
         </span>
         <hr>
-        <app-reactions-container [input-reactions]='comment.reactions'></app-reactions-container>
+        <app-reactions-container [input-reactions]='comment.reactions' [input-type]='"comment"' [input-id]='comment.id'></app-reactions-container>
     </div>
 </div>

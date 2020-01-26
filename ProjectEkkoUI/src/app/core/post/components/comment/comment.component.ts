@@ -20,6 +20,10 @@ export class CommentComponent implements OnInit, OnDestroy {
   @Input('input-comment')
   comment: Comment;
 
+  // tslint:disable-next-line: no-input-rename
+  @Input('input-id')
+  id: number;
+
   constructor(private authService: AuthService) { }
 
   userOwned() {
