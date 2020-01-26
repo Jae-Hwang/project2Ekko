@@ -27,9 +27,13 @@ const routes: Routes = [
     loadChildren: () => import('./pages/register/register.module').then(mod => mod.RegisterModule)
   },
   {
-    path: '' ,
-    component: PageNotFoundComponent
+    path: 'friends',
+    loadChildren: () => import('./pages/friends/friends.module').then(mod => mod.FriendsModule)
   },
+  {
+    path: '',
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({

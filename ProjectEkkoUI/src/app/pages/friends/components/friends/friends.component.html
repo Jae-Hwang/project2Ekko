@@ -1,0 +1,14 @@
+<p>friends works!</p>
+<form class="form-signin" (submit)="save()" id="logform">
+    <h1 class="h3 mb-3 font-weight-normal">Follow!</h1>
+    <label for="inputUsername" class="sr-only">username</label>
+    <input type="text" id="inputUsername" 
+        name="input-username"
+        class="form-control" 
+        placeholder="username" 
+        required autofocus
+        [(ngModel)]="credentials.username">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <button class="btn btn-lg btn-secondary btn-block" type="submit">Follow Friends</button>
+
+</form>

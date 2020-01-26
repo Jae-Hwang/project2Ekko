@@ -3764,3 +3764,39 @@ org.hibernate.hql.internal.ast.DetailedSemanticException: Unable to locate appro
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212) [spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
 	at com.sun.proxy.$Proxy61.getMaxPagePostReaction(Unknown Source) [?:?]
 	at com.revature.drivers.TestDriver.main(TestDriver.java:73) [classes/:?]
+[WARN ] 2020-01-25 21:07:00.168 [main] SqlExceptionHelper:137 - SQL Error: 1400, SQLState: 23000
+[ERROR] 2020-01-25 21:07:00.170 [main] SqlExceptionHelper:142 - ORA-01400: cannot insert NULL into ("SPRINGUSER"."FRIENDLIST"."OWNER_ID")
+
+[WARN ] 2020-01-25 21:08:29.820 [main] SqlExceptionHelper:137 - SQL Error: 1400, SQLState: 23000
+[ERROR] 2020-01-25 21:08:29.821 [main] SqlExceptionHelper:142 - ORA-01400: cannot insert NULL into ("SPRINGUSER"."FRIENDLIST"."OWNER_ID")
+
+[WARN ] 2020-01-25 21:10:24.057 [main] SqlExceptionHelper:137 - SQL Error: 1400, SQLState: 23000
+[ERROR] 2020-01-25 21:10:24.059 [main] SqlExceptionHelper:142 - ORA-01400: cannot insert NULL into ("SPRINGUSER"."FRIENDLIST"."OWNER_ID")
+
+[WARN ] 2020-01-26 00:15:02.558 [main] SqlExceptionHelper:137 - SQL Error: 1, SQLState: 23000
+[ERROR] 2020-01-26 00:15:02.560 [main] SqlExceptionHelper:142 - ORA-00001: unique constraint (SPRINGUSER.UK_IHGBSGRI7FTFH1JFDI7HK70X7) violated
+
+[WARN ] 2020-01-26 00:16:53.993 [main] SqlExceptionHelper:137 - SQL Error: 1, SQLState: 23000
+[ERROR] 2020-01-26 00:16:53.995 [main] SqlExceptionHelper:142 - ORA-00001: unique constraint (SPRINGUSER.UK_IHGBSGRI7FTFH1JFDI7HK70X7) violated
+
+[WARN ] 2020-01-26 00:17:35.094 [main] SqlExceptionHelper:137 - SQL Error: 1, SQLState: 23000
+[ERROR] 2020-01-26 00:17:35.095 [main] SqlExceptionHelper:142 - ORA-00001: unique constraint (SPRINGUSER.SYS_C005905) violated
+
+[WARN ] 2020-01-26 00:18:48.017 [main] SqlExceptionHelper:137 - SQL Error: 1, SQLState: 23000
+[ERROR] 2020-01-26 00:18:48.020 [main] SqlExceptionHelper:142 - ORA-00001: unique constraint (SPRINGUSER.SYS_C005908) violated
+
+[WARN ] 2020-01-26 00:20:55.608 [main] SqlExceptionHelper:137 - SQL Error: 2291, SQLState: 23000
+[ERROR] 2020-01-26 00:20:55.610 [main] SqlExceptionHelper:142 - ORA-02291: integrity constraint (SPRINGUSER.FKM8IWNPMICRVNM9G81BDM54MR7) violated - parent key not found
+
+[WARN ] 2020-01-26 00:21:19.285 [main] SqlExceptionHelper:137 - SQL Error: 2291, SQLState: 23000
+[ERROR] 2020-01-26 00:21:19.286 [main] SqlExceptionHelper:142 - ORA-02291: integrity constraint (SPRINGUSER.FKM8IWNPMICRVNM9G81BDM54MR7) violated - parent key not found
+
+[WARN ] 2020-01-26 00:22:49.387 [main] SqlExceptionHelper:137 - SQL Error: 1, SQLState: 23000
+[ERROR] 2020-01-26 00:22:49.389 [main] SqlExceptionHelper:142 - ORA-00001: unique constraint (SPRINGUSER.SYS_C005908) violated
+
+[WARN ] 2020-01-26 00:23:43.646 [main] SqlExceptionHelper:137 - SQL Error: 1, SQLState: 23000
+[ERROR] 2020-01-26 00:23:43.648 [main] SqlExceptionHelper:142 - ORA-00001: unique constraint (SPRINGUSER.UK_IHGBSGRI7FTFH1JFDI7HK70X7) violated
+
+[WARN ] 2020-01-26 00:24:39.157 [main] SqlExceptionHelper:137 - SQL Error: 1, SQLState: 23000
+[ERROR] 2020-01-26 00:24:39.158 [main] SqlExceptionHelper:142 - ORA-00001: unique constraint (SPRINGUSER.UK_IHGBSGRI7FTFH1JFDI7HK70X7) violated
+
