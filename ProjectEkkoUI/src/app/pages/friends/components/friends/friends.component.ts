@@ -22,6 +22,8 @@ export class FriendsComponent implements OnInit, OnDestroy {
   currentTable: AppUser[];
   tableSubscription: Subscription;
 
+  count = 0;
+
   constructor(private friendService: FriendsService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -31,7 +33,7 @@ export class FriendsComponent implements OnInit, OnDestroy {
     let check = this.authService.checkuser();
     if (check === false) {
       this.router.navigateByUrl('/login');
-    } 
+    }
     this.friendService.getFriends(this.currentUser.id);
     this.tableSubscription = this.friendService.$currentFriends.subscribe(user => {
       this.currentTable = user;
@@ -39,12 +41,13 @@ export class FriendsComponent implements OnInit, OnDestroy {
     console.log(this.currentTable);
   }
 
-  save() {
-    this.friendService.save(this.currentUser.id, this.credentials);
-  }
-
-  update() {
-    this.friendService.update(this.currentUser.id, this.credentials);
+  submit() {
+    this.count++;
+    if (this.count > 1) {
+      this.friendService.update(this.currentUser.id, this.credentials);
+    } else {
+      this.friendService.save(this.currentUser.id, this.credentials);
+    }
   }
 
   ngOnDestroy() {
