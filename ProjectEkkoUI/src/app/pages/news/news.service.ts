@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http'
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { News } from './news.model';
@@ -10,20 +10,20 @@ import { News } from './news.model';
 export class NewsService {
 
   private newsApiKey = `https://newsapi.org/v2/top-headlines?country=us&apiKey=ebf4bd89e8cc4bde97eacbaf2b8662bf`;
-  private url = 'https://newsapi.org/v2/'
+  private url = 'https://newsapi.org/v2/';
   private apiKey = '&apiKey=ebf4bd89e8cc4bde97eacbaf2b8662bf';
-  
-  //Individual Query Parameters
+
+  // Individual Query Parameters
   private worldNews = this.url + 'everything?q=worldnews' + this.apiKey;
   private usNews = this.url + 'top-headlines?country=us' + this.apiKey;
   private entertainment = this.url + 'top-headlines?country=us&category=entertainment' + this.apiKey;
   private sports = this.url + 'top-headlines?country=us&category=sports' + this.apiKey;
   private business = this.url + 'top-headlines?country=us&category=business' + this.apiKey;
-  
-  constructor( private httpClient:HttpClient) { }
 
-  getNews(category: String): Observable<any>{
-    console.log("Inside News Server");
+  constructor( private httpClient: HttpClient) { }
+
+  getNews(category: string): Observable<any> {
+    console.log('Inside News Server');
     switch (category) {
       case 'worldNews':
         console.log(this.worldNews);

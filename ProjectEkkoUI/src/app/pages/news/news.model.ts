@@ -1,10 +1,10 @@
 export class News {
-    sourcename: String;
-    author: String;
-    title: String;
-    description: String;
-    url: String;
-    urlToImage: String;
-    publishedAt: String;
-    content: String;
+    sourcename: string;
+    author: string;
+    title: string;
+    description: string;
+    url: string;
+    urlToImage: string;
+    publishedAt: string;
+    content: string;
 }

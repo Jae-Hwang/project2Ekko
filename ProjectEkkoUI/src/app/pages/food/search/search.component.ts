@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService } from './search.service'
+import { SearchService } from './search.service';
 
 
 @Component({
@@ -17,13 +17,13 @@ export class SearchComponent implements OnInit {
     // this.getResults();
   }
 
-  getResults(foodQuery){
+  getResults(foodQuery) {
     this.searchService.getFoodResults(foodQuery)
     .subscribe
     (data => {
       this.results = data.hits;
       // console.log(data.hits[0].recipe)
-    })
+    });
   }
 
 }
