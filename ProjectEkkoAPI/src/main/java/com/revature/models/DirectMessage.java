@@ -8,22 +8,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name = "messages")
+@Table(name = "direct_messages")
 @Component
-public class Message implements Serializable{
+public class DirectMessage implements Serializable{
 	
-	private static final long serialVersionUID = 3519192776120105137L;
+	private static final long serialVersionUID = 1288292659205422689L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "message_seq_gen")
-	@SequenceGenerator(name = "message_seq_gen", sequenceName = "MESSAGE_SEQ")
-	@Column(name = "m_id")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "dir_msg_seq_gen")
+	@SequenceGenerator(name = "dir_msg_seq_gen", sequenceName = "DIRECT_MSG_SEQ")
+	@Column(name = "dir_msg_id")
 	private int id;
 	
 	@Column(name = "user1_id") // add not null later
@@ -35,11 +37,11 @@ public class Message implements Serializable{
 	@Column(name = "message")
 	private String message;
 
-	public Message() {
+	public DirectMessage() {
 		super();
 	}
 
-	public Message(int id, int user1Id, int user2Id, String message) {
+	public DirectMessage(int id, int user1Id, int user2Id, String message) {
 		super();
 		this.id = id;
 		this.user1Id = user1Id;
@@ -89,10 +91,10 @@ public class Message implements Serializable{
 		if (this == obj) {
 			return true;
 		}
-		if (!(obj instanceof Message)) {
+		if (!(obj instanceof DirectMessage)) {
 			return false;
 		}
-		Message other = (Message) obj;
+		DirectMessage other = (DirectMessage) obj;
 		return id == other.id && Objects.equals(message, other.message) && user1Id == other.user1Id
 				&& user2Id == other.user2Id;
 	}

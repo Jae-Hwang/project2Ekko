@@ -48,6 +48,7 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
+	@Transactional
 	public User FindById(int id) {
 		// TODO Auto-generated method stub
 		return null;

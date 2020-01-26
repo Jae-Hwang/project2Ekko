@@ -17,9 +17,9 @@ public class TestDriverUser {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 
 		UserDao dao = (UserDao) ac.getBean("userDaoImpl");
-
-		User a = new User(5, "jae", "manager");
-		dao.save(a);
+//
+//		User a = new User(5, "jae", "manager");
+//		dao.save(a);
 		User u = dao.findByUsernamePassword("jae", "manager");
 		System.out.println(u);
 	}

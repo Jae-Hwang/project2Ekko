@@ -1,21 +1,15 @@
 package com.revature.models;
 
+import java.util.Set;
+
 import javax.persistence.Column;
-<<<<<<< HEAD
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-=======
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
->>>>>>> airton
 
 import org.springframework.stereotype.Component;
 
@@ -35,7 +29,10 @@ public class User {
 	
 	@Column(name = "password")
 	private String password;
-
+	
+	@ManyToMany
+	private Set<GroupChat> groupChatsIn;
+	
 	public User(int id, String username, String password) {
 		super();
 		this.id = id;
@@ -70,6 +67,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Set<GroupChat> getGroupChatsIn() {
+		return groupChatsIn;
+	}
+
+	public void setGroupChatsIn(Set<GroupChat> groupChatsIn) {
+		this.groupChatsIn = groupChatsIn;
 	}
 
 	@Override
