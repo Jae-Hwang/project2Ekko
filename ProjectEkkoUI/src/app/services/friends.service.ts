@@ -10,21 +10,21 @@ import { Friendlist } from '../models/friendlist.model';
 })
 export class FriendsService {
 
-  friendlist = new Friendlist();
-
   private currentUserStream = new ReplaySubject<Friendlist>();
   $currentUser = this.currentUserStream.asObservable();
 
+  private currentFriendsStream = new ReplaySubject<AppUser[]>();
+  $currentFriends = this.currentFriendsStream.asObservable();
+
   constructor(private httpClient: HttpClient, private router: Router) {
     this.router.navigateByUrl('/friends');
+
   }
 
-  save(credentials) {
-    let au: Array<AppUser> = [new AppUser(0, credentials.username, '')];
-    console.log(au);
-    let fl = new Friendlist(152, au);
-    console.log(fl);
-    this.httpClient.post<Friendlist>('http://localhost:8080/ProjectEkko/friends/save', fl, {
+  save(u,credentials) {
+    let user = new AppUser(u, credentials.username, '****');
+    console.log(user);
+    this.httpClient.post<AppUser>('http://localhost:8080/ProjectEkko/friends/save', user, {
       withCredentials: true
     }).subscribe(
       data => {
@@ -33,4 +33,30 @@ export class FriendsService {
       }
     );
   }
+
+  update(u,credentials) {
+    let user = new AppUser(u, credentials.username, '****');
+    this.httpClient.post<AppUser>('http://localhost:8080/ProjectEkko/friends/update', user, {
+      withCredentials: true
+    }).subscribe(
+      data => {
+      },
+      err => {
+      }
+    );
+  }
+
+  getFriends(uid) {
+    this.httpClient.get<AppUser[]>(`http://localhost:8080/ProjectEkko/friends/${uid}`, {
+      withCredentials: true
+    }).subscribe(
+      data => {
+        console.log(data);
+        this.currentFriendsStream.next(data);
+      },
+      err => {
+      }
+    );
+  }
+
 }
