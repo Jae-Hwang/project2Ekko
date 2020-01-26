@@ -4,7 +4,6 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -47,11 +46,17 @@ public class GroupChatMessage {
 		this.chatMessage = chatMessage;
 	}
 	
+	
 	public GroupChatMessage(GroupChat groupChat) {
 		super();
 		this.groupChat = groupChat;
 	}
 
+	public GroupChatMessage(String chatMessage, GroupChat groupChat) {
+		super();
+		this.chatMessage = chatMessage;
+		this.groupChat = groupChat;
+	}
 
 	public GroupChatMessage(int id, String chatMessage) {
 		super();

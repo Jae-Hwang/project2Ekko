@@ -55,7 +55,6 @@ public class GroupChatDaoImpl implements GroupChatDao{
 		Predicate cId = cb.equal(m.get("id"), id);
 		cq.select(m).where(cId);
 		Query<GroupChat> query = s.createQuery(cq);
-		System.out.println("this is the first " + query.toString());
 		GroupChat groupChat = query.getResultList().get(0);
 		return groupChat;
 	}

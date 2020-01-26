@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.daos.UserDao;
+import com.revature.models.GroupChat;
 import com.revature.models.User;
 
 @Repository
@@ -58,6 +59,20 @@ public class UserDaoImpl implements UserDao{
 	public User FindById(int id) {
 		Session s = sf.getCurrentSession();
 		return s.get(User.class, id);
+	}
+
+	@Override
+	@Transactional
+	public void makeGroupChat(GroupChat gc) {
+		Session s = sf.getCurrentSession();
+		s.save(gc);
+	}
+
+	@Override
+	@Transactional
+	public void addToGroupChat(GroupChat gc) {
+		Session s = sf.getCurrentSession();
+		s.update(gc);
 	}
 
 }

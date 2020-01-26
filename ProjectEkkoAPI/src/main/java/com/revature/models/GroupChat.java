@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -34,8 +35,7 @@ public class GroupChat {
 	@OneToMany(mappedBy = "groupChat", fetch = FetchType.EAGER) // Connects the one group chat to many messages
 	private Set<GroupChatMessage> groupChatMessages;
 	
-	@Column // Testing
-	@ManyToMany(mappedBy = "groupChatsIn")
+	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<User> userList;
 
 	public GroupChat() {
@@ -46,23 +46,31 @@ public class GroupChat {
 		super();
 		this.id = id;
 	}
-
-	public GroupChat(String chatName) {
-		super();
-		this.chatName = chatName;
-	}
-
-	public GroupChat(int id, String chatName) {
+	// experimental
+	public GroupChat(int id, User user) {
 		super();
 		this.id = id;
-		this.chatName = chatName;
+		this.chatName = "";
+		this.userList = new HashSet<>();
+		this.userList.add(user);
+		this.groupChatMessages = new HashSet<>();
+		
 	}
 
-	public GroupChat(int id, String chatName, Set<GroupChatMessage> groupChatMessages) {
+	public GroupChat(String chatName, User user) {
+		super();
+		this.chatName = chatName;
+		this.userList = new HashSet<>();
+		this.userList.add(user);
+		this.groupChatMessages = new HashSet<>();
+	}
+
+	public GroupChat(int id, String chatName, Set<GroupChatMessage> groupChatMessages, Set<User> userList) {
 		super();
 		this.id = id;
 		this.chatName = chatName;
 		this.groupChatMessages = groupChatMessages;
+		this.userList = userList;
 	}
 
 	public int getId() {
@@ -97,14 +105,9 @@ public class GroupChat {
 		this.userList = userList;
 	}
 	
-	// Adding message to group chat
-	public void addMessage(GroupChatMessage gcm) {
-		this.groupChatMessages.add(gcm);
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(chatName, groupChatMessages, id);
+		return Objects.hash(chatName, groupChatMessages, id, userList);
 	}
 
 	@Override
@@ -117,12 +120,13 @@ public class GroupChat {
 		}
 		GroupChat other = (GroupChat) obj;
 		return Objects.equals(chatName, other.chatName) && Objects.equals(groupChatMessages, other.groupChatMessages)
-				&& id == other.id;
+				&& id == other.id && Objects.equals(userList, other.userList);
 	}
 
 	@Override
 	public String toString() {
-		return "GroupChat [id=" + id + ", chatName=" + chatName + ", groupChatMessages=" + groupChatMessages + "]";
+		return "GroupChat [id=" + id + ", chatName=" + chatName + ", groupChatMessages=" + groupChatMessages
+				+ ", userList=" + userList + "]";
 	}
-	
+
 }
