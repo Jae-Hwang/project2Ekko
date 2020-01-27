@@ -35,6 +35,10 @@ const routes: Routes = [
     loadChildren: () => import('./core/message/message.module').then(mod => mod.MessageModule)
   },
   {
+    path: 'groupmsg',
+    loadChildren: () => import('./core/group-message/group-message.module').then(mod => mod.GroupMessageModule)
+  },
+  {
     path: '',
     component: PageNotFoundComponent
   }

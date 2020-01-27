@@ -16,7 +16,7 @@ public class MessageDriver {
 		
 		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
-		DirectMessageDao messDao = (DirectMessageDao) ac.getBean("directMessageDaoImpl");
+//		DirectMessageDao messDao = (DirectMessageDao) ac.getBean("directMessageDaoImpl");
 		
 		// All work
 //		messDao.save(new DirectMessage(1052, 153, "This is a test message, hope I'm alive"));
@@ -27,8 +27,8 @@ public class MessageDriver {
 //		messDao.findById(1).forEach(dm -> {
 //			System.out.println(dm);
 //		});
-		
-//		GroupChatDao gcDao = (GroupChatDao) ac.getBean("groupChatDaoImpl");
+//		
+		GroupChatDao gcDao = (GroupChatDao) ac.getBean("groupChatDaoImpl");
 		
 		// Don't create a message directly
 //		gcDao.creatGroupChatMessage(new GroupChatMessage("This is not the end"));
@@ -46,7 +46,7 @@ public class MessageDriver {
 		
 //		UserDao uD = (UserDao) ac.getBean("userDaoImpl");
 		
-		// Works
+		// Works Start Here for front end
 //		uD.makeGroupChat(new GroupChat("New Chat", new User(1052)));
 		
 		// Works in adding a user to an existing chat
@@ -57,7 +57,7 @@ public class MessageDriver {
 //		System.out.println(gcDao.findChatById(802));
 		
 //		gcDao.creatGroupChatMessage(new GroupChatMessage("What up my glip glop", new GroupChat(802)));
-//		System.out.println(gcDao.findChatById(802));
+		System.out.println(gcDao.findChatById(802));
 	}
 
 }

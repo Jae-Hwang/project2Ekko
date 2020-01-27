@@ -30,7 +30,7 @@ import { TestPageComponent } from './shared/test-page/test-page.component';
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
-    AppRoutingModule,
+    AppRoutingModule, // ?
     CommonModule,
     PostModule,
     FoodModule,

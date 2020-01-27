@@ -1,1 +1,32 @@
-<p>group-message works!</p>
+<div id="new-group-chat">
+    <form class="create-new-group-chat" (submit)="createNewGC()">
+        <h3>Chat Name</h3>
+        <input type="text" id="inputChatName" name="input-chat-name" class="form-control" placeholder="Dragons & Dragons" required autofocus [(ngModel)]="newGroupChats.chatName">
+
+        <button type="submit">Create Group Chat</button>
+    </form>
+</div>
+<br><br><br>
+<div id="new-user-to-chat">
+    <form class="add-to-group-chat" (submit)="addNewUserToGC()">
+        <h3>Chat To Add User</h3>
+        <input type="number" id="inputChat" name="input-chat" class="form-control" placeholder="1230321" required autofocus [(ngModel)]="chatToAssign.id">
+
+        <h3>User To Add</h3>
+        <input type="number" id="inputUser" name="input-user-id" class="form-control" placeholder="411" required [(ngModel)]="userToBeAssigned.id">
+
+        <button type="submit">Add user to Group Chat</button>
+    </form>
+</div>
+<br><br><br>
+<div id="new-msg-to-chat">
+    <form class="add-msg" (submit)="addNewMsgToGC()">
+        <h3>Message To Send</h3>
+        <input type="text" id="inputMsg" name="input-msg" class="form-control" placeholder="Anyone still awake?" required autofocus [(ngModel)]="msgToSend.chatMessge">
+
+        <h3>Chat To Post To</h3>
+        <input type="number" id="inputChatId" name="input-chat-id" class="form-control" placeholder="2020" required [(ngModel)]="chatToAssign.id">
+
+        <button type="submit">Add New Message to Group Chat</button>
+    </form>
+</div>

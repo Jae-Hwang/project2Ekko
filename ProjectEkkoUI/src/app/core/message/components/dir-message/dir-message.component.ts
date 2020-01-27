@@ -41,10 +41,6 @@ export class DirMessageComponent implements OnInit {
     });
   }
 
-  // getOldDMs() {
-  //   this.dirMsgService.getOldDMs(this.currentUser.id);
-  // }
-
   createNewDM() {
     this.dirMessages.user1Id = this.currentUser.id;
     this.dirMsgService.createNewDM(this.dirMessages);

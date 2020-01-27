@@ -9,9 +9,6 @@ import { ReplaySubject } from 'rxjs';
 })
 export class DirMsgService {
 
-  // private currentUserStream = new ReplaySubject<Friendlist>();
-  // $currentUser = this.currentUserStream.asObservable();
-
   private currentDMsStream = new ReplaySubject<DirMessage[]>();
   $currentDMs = this.currentDMsStream.asObservable();
 

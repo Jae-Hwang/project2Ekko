@@ -19,7 +19,9 @@ public class GroupChatController {
 	
 	@PostMapping("/groupChat/create")
 	public ResponseEntity<GroupChat> makeGroupChat(@RequestBody GroupChat gc) {
+		System.out.println(gc); // REMOVE AFTER
 		GroupChat newGC = new GroupChat(gc.getChatName(), new User(gc.getId()));
+		System.out.println(newGC); // REMOVE AFTER
 		GCService.makeGroupChat(newGC);
 		return ResponseEntity.ok().header("Created group chat", "test").build();
 	}
