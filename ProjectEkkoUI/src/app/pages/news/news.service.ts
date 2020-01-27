@@ -1,8 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { News } from './news.model';
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +45,7 @@ export class NewsService {
         return this.httpClient.get(this.business);
 
       default:
-          return this.httpClient.get(this.newsApiKey);
-        }
+        return this.httpClient.get(this.newsApiKey);
+    }
   }
 }

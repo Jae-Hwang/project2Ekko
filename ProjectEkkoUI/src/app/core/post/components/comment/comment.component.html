@@ -1,0 +1,13 @@
+<div @fade [ngClass]='class'>
+    <div class="card-body">
+        <span>
+            <p class="card-title">{{comment.owner.username}}</p>
+            <p class="card-subtitle mb-2 text-muted upserted">{{comment.upserted | date:'medium'}}</p>
+        </span>
+        <span class="card-text">
+            {{comment.content}}
+        </span>
+        <hr>
+        <app-reactions-container [input-reactions]='comment.reactions' [input-type]='"comment"' [input-id]='comment.id'></app-reactions-container>
+    </div>
+</div>

@@ -1,37 +1,45 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
-import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
-import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
-import { NewsComponent } from './pages/news/news/news.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { SearchComponent } from './pages/food/search/search.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NewsBarComponent } from './pages/news/news-bar/news-bar.component';
-import { SearchService } from './pages/food/search/search.service';
-import { NewsService } from './pages/news/news.service';
+import { AppComponent } from './app.component';
+import { PostModule } from './core/post/post.module';
+import { FoodModule } from './pages/food/food.module';
 import { NewsModule } from './pages/news/news.module';
+import { FooterComponent } from './shared/footer/footer.component';
+import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { TestPageComponent } from './shared/test-page/test-page.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     NavBarComponent,
-    NewsComponent,
     FooterComponent,
-    SearchComponent,
-    NewsBarComponent
+    TestPageComponent
   ],
   imports: [
-    HttpClientModule,
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
-    FormsModule
+    RouterModule,
+    HttpClientModule,
+    AppRoutingModule,
+    CommonModule,
+    PostModule,
+    FoodModule,
+    NewsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

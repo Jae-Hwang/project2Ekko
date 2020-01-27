@@ -3723,3 +3723,80 @@ org.hibernate.hql.internal.ast.DetailedSemanticException: Unable to locate appro
 [WARN ] 2020-01-22 12:05:01.615 [main] SqlExceptionHelper:137 - SQL Error: 936, SQLState: 42000
 [ERROR] 2020-01-22 12:05:01.616 [main] SqlExceptionHelper:142 - ORA-00936: missing expression
 
+[ERROR] 2020-01-22 15:34:08.433 [main] ErrorTracker:62 -  Unable to locate appropriate constructor on class [java.lang.Integer]. Expected arguments are: long
+[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: java.lang.Integer]
+[ERROR] 2020-01-22 15:34:08.434 [main] ErrorTracker:57 -  Unable to locate appropriate constructor on class [java.lang.Integer]. Expected arguments are: long
+[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: java.lang.Integer]
+org.hibernate.hql.internal.ast.DetailedSemanticException: Unable to locate appropriate constructor on class [java.lang.Integer]. Expected arguments are: long
+	at org.hibernate.hql.internal.ast.tree.ConstructorNode.resolveConstructor(ConstructorNode.java:182) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.hql.internal.ast.tree.ConstructorNode.prepare(ConstructorNode.java:144) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.hql.internal.ast.HqlSqlWalker.processConstructor(HqlSqlWalker.java:1245) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.selectExpr(HqlSqlBaseWalker.java:2375) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.selectExprList(HqlSqlBaseWalker.java:2241) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.selectClause(HqlSqlBaseWalker.java:1507) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.query(HqlSqlBaseWalker.java:589) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.selectStatement(HqlSqlBaseWalker.java:317) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.statement(HqlSqlBaseWalker.java:265) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.analyze(QueryTranslatorImpl.java:272) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:192) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:144) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:113) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:73) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.engine.query.spi.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:155) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.internal.AbstractSharedSessionContract.getQueryPlan(AbstractSharedSessionContract.java:600) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:709) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:772) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.query.criteria.internal.CriteriaQueryImpl$1.buildCompiledQuery(CriteriaQueryImpl.java:310) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.query.criteria.internal.compile.CriteriaCompiler.compile(CriteriaCompiler.java:165) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:735) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:109) ~[hibernate-core-5.4.10.Final.jar:5.4.10.Final]
+	at com.revature.daos.ReactionDaoImpl.getMaxPagePostReaction(ReactionDaoImpl.java:95) ~[classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_241]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_241]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_241]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_241]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:198) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:366) [spring-tx-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:99) [spring-tx-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) [spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212) [spring-aop-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at com.sun.proxy.$Proxy61.getMaxPagePostReaction(Unknown Source) [?:?]
+	at com.revature.drivers.TestDriver.main(TestDriver.java:73) [classes/:?]
+[WARN ] 2020-01-25 21:07:00.168 [main] SqlExceptionHelper:137 - SQL Error: 1400, SQLState: 23000
+[ERROR] 2020-01-25 21:07:00.170 [main] SqlExceptionHelper:142 - ORA-01400: cannot insert NULL into ("SPRINGUSER"."FRIENDLIST"."OWNER_ID")
+
+[WARN ] 2020-01-25 21:08:29.820 [main] SqlExceptionHelper:137 - SQL Error: 1400, SQLState: 23000
+[ERROR] 2020-01-25 21:08:29.821 [main] SqlExceptionHelper:142 - ORA-01400: cannot insert NULL into ("SPRINGUSER"."FRIENDLIST"."OWNER_ID")
+
+[WARN ] 2020-01-25 21:10:24.057 [main] SqlExceptionHelper:137 - SQL Error: 1400, SQLState: 23000
+[ERROR] 2020-01-25 21:10:24.059 [main] SqlExceptionHelper:142 - ORA-01400: cannot insert NULL into ("SPRINGUSER"."FRIENDLIST"."OWNER_ID")
+
+[WARN ] 2020-01-26 00:15:02.558 [main] SqlExceptionHelper:137 - SQL Error: 1, SQLState: 23000
+[ERROR] 2020-01-26 00:15:02.560 [main] SqlExceptionHelper:142 - ORA-00001: unique constraint (SPRINGUSER.UK_IHGBSGRI7FTFH1JFDI7HK70X7) violated
+
+[WARN ] 2020-01-26 00:16:53.993 [main] SqlExceptionHelper:137 - SQL Error: 1, SQLState: 23000
+[ERROR] 2020-01-26 00:16:53.995 [main] SqlExceptionHelper:142 - ORA-00001: unique constraint (SPRINGUSER.UK_IHGBSGRI7FTFH1JFDI7HK70X7) violated
+
+[WARN ] 2020-01-26 00:17:35.094 [main] SqlExceptionHelper:137 - SQL Error: 1, SQLState: 23000
+[ERROR] 2020-01-26 00:17:35.095 [main] SqlExceptionHelper:142 - ORA-00001: unique constraint (SPRINGUSER.SYS_C005905) violated
+
+[WARN ] 2020-01-26 00:18:48.017 [main] SqlExceptionHelper:137 - SQL Error: 1, SQLState: 23000
+[ERROR] 2020-01-26 00:18:48.020 [main] SqlExceptionHelper:142 - ORA-00001: unique constraint (SPRINGUSER.SYS_C005908) violated
+
+[WARN ] 2020-01-26 00:20:55.608 [main] SqlExceptionHelper:137 - SQL Error: 2291, SQLState: 23000
+[ERROR] 2020-01-26 00:20:55.610 [main] SqlExceptionHelper:142 - ORA-02291: integrity constraint (SPRINGUSER.FKM8IWNPMICRVNM9G81BDM54MR7) violated - parent key not found
+
+[WARN ] 2020-01-26 00:21:19.285 [main] SqlExceptionHelper:137 - SQL Error: 2291, SQLState: 23000
+[ERROR] 2020-01-26 00:21:19.286 [main] SqlExceptionHelper:142 - ORA-02291: integrity constraint (SPRINGUSER.FKM8IWNPMICRVNM9G81BDM54MR7) violated - parent key not found
+
+[WARN ] 2020-01-26 00:22:49.387 [main] SqlExceptionHelper:137 - SQL Error: 1, SQLState: 23000
+[ERROR] 2020-01-26 00:22:49.389 [main] SqlExceptionHelper:142 - ORA-00001: unique constraint (SPRINGUSER.SYS_C005908) violated
+
+[WARN ] 2020-01-26 00:23:43.646 [main] SqlExceptionHelper:137 - SQL Error: 1, SQLState: 23000
+[ERROR] 2020-01-26 00:23:43.648 [main] SqlExceptionHelper:142 - ORA-00001: unique constraint (SPRINGUSER.UK_IHGBSGRI7FTFH1JFDI7HK70X7) violated
+
+[WARN ] 2020-01-26 00:24:39.157 [main] SqlExceptionHelper:137 - SQL Error: 1, SQLState: 23000
+[ERROR] 2020-01-26 00:24:39.158 [main] SqlExceptionHelper:142 - ORA-00001: unique constraint (SPRINGUSER.UK_IHGBSGRI7FTFH1JFDI7HK70X7) violated
+
