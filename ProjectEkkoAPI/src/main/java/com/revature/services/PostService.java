@@ -27,4 +27,12 @@ public class PostService {
 		post.setOwner(new User(uid, "", ""));
 		postDao.save(post);
 	}
+	
+	public List<Post> findByFriends(List<User> friends, int page) {
+		return postDao.findByFriends(friends, page);
+	}
+	
+	public String getMaxPageByFriends(List<User> friends) {
+		return Integer.toString(postDao.getMaxPageFriends(friends));
+	}
 }

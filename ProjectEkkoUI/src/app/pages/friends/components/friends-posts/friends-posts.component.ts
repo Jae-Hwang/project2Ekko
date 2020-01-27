@@ -1,43 +1,45 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Reaction } from 'src/app/models/reaction.model';
+import { Subscription } from 'rxjs';
 import { AppUser } from 'src/app/models/user.model';
-import { Comment } from 'src/app/models/comment.model';
+import { FriendsService } from 'src/app/services/friends.service';
 import { Post } from 'src/app/models/post.model';
 import { PostService } from 'src/app/services/post.service';
-import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-test-page',
-  templateUrl: './test-page.component.html',
-  styleUrls: ['./test-page.component.css']
+  selector: 'app-friends-posts',
+  templateUrl: './friends-posts.component.html',
+  styleUrls: ['./friends-posts.component.css']
 })
-export class TestPageComponent implements OnInit, OnDestroy {
+export class FriendsPostsComponent implements OnInit, OnDestroy {
 
-  currentUserSubscription: Subscription;
-  currentUser: AppUser;
+  targetUserSubscription: Subscription;
+  targetUser: AppUser;
 
-  testPosts: Post[];
   postsSubscription: Subscription;
-
+  posts: Post[];
 
   constructor(private authService: AuthService, private postService: PostService) { }
 
   ngOnInit() {
-    this.currentUserSubscription = this.authService.$currentUser.subscribe(user => {
-      this.currentUser = user;
-
-      this.authService.setTargetUser(this.currentUser);
+    this.targetUserSubscription = this.authService.$targetUser.subscribe(user => {
+      this.targetUser = user;
     });
 
     this.postsSubscription = this.postService.$posts.subscribe(posts => {
-      this.testPosts = posts;
+      this.posts = posts;
     });
+
   }
 
   ngOnDestroy() {
+    if (this.targetUserSubscription !== undefined) {
+      this.targetUserSubscription.unsubscribe();
+    }
+
     if (this.postsSubscription !== undefined) {
       this.postsSubscription.unsubscribe();
     }
   }
+
 }

@@ -10,11 +10,12 @@ import { PostDto } from '../models/postDto.model';
 export class PostService {
 
   cache = new Map<number, Post[]>();
+  friendsCache = new Map<number, Post[]>();
 
   private maxPageStream = new ReplaySubject<number>(1);
   $maxPage = this.maxPageStream.asObservable();
 
-  private postsStream = new ReplaySubject<Post[]>(1);
+  private postsStream = new ReplaySubject<Post[]>(1, 500);
   $posts = this.postsStream.asObservable();
 
   constructor(private httpClient: HttpClient) {
@@ -34,6 +35,30 @@ export class PostService {
           this.postsStream.next(data.body);
           console.log(`Max Page: ${data.headers.get('X-page')}`);
           this.maxPageStream.next(parseInt(data.headers.get('X-page'), 0));
+          this.cache.set(page, data.body);
+        },
+        err => {
+          console.log(`failed to get posts with user id: ${uid} and page: ${page}`);
+          console.log(err);
+        }
+      );
+    }
+  }
+
+  getPostsByFriends(uid: number, page: number) {
+    if (this.friendsCache.has(page)) {
+      this.postsStream.next(this.cache.get(page));
+    } else {
+      this.httpClient.get<any>(`http://localhost:8080/ProjectEkko/posts/friends/${uid}/${page}`, {
+        withCredentials: true,
+        observe: 'response'
+      }).subscribe(
+        data => {
+          console.log(`successfully got posts of friends with user id: ${uid} and page: ${page}`);
+          this.postsStream.next(data.body);
+          console.log(`Max Page: ${data.headers.get('X-page')}`);
+          this.maxPageStream.next(parseInt(data.headers.get('X-page'), 0));
+          this.friendsCache.set(page, data.body);
         },
         err => {
           console.log(`failed to get posts with user id: ${uid} and page: ${page}`);
@@ -58,5 +83,10 @@ export class PostService {
         console.log(err);
       }
     );
+  }
+
+  resetCache() {
+    this.cache.clear();
+    this.friendsCache.clear();
   }
 }

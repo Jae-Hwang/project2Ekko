@@ -1,5 +1,7 @@
 package com.revature.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,7 @@ public class FriendListService {
 	@Autowired
 	private FriendListDao friendListDao; 
 	
-	public FriendList findall(int owner) {
+	public List<User> findall(int owner) {
 		return friendListDao.findAll(owner);
 	};
 	
