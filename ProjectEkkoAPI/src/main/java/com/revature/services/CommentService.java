@@ -16,7 +16,7 @@ public class CommentService {
 	@Autowired
 	private CommentDao commentDao;
 	
-	public List<Comment> getCommentsByPostId(int pid, int page) {
+	public List<Comment> getCommentsByPostId(int pid) {
 		return commentDao.getCommentsByPostId(pid);
 	}
 	

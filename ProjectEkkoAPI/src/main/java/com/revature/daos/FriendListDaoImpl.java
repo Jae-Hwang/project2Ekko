@@ -23,22 +23,27 @@ import com.revature.models.User;
 
 @Repository
 public class FriendListDaoImpl implements FriendListDao {
-	
+
 	@Autowired
 	private SessionFactory sf;
-	
+
 	@Override
 	@Transactional
 	public List<User> findAll(int owner) {
 		Session s = sf.getCurrentSession();
-		List<User> user = new ArrayList<User>(s.get(FriendList.class,owner).getUsers());
-		List <User> newuser = new ArrayList<User>();
-		for(User u: user) {
-			User m = new User();
-			m.setUsername(u.getUsername());
-			newuser.add(m);
+		List<User> newuser = new ArrayList<User>();
+		if (s.get(FriendList.class, owner) == null) {
+			return newuser;
+		} else {
+			List<User> user = new ArrayList<User>(s.get(FriendList.class, owner).getUsers());
+			for (User u : user) {
+				User m = new User();
+				m.setId(u.getId());
+				m.setUsername(u.getUsername());
+				newuser.add(m);
+			}
+			return newuser;
 		}
-		return newuser;
 	}
 
 	@Override
@@ -49,8 +54,9 @@ public class FriendListDaoImpl implements FriendListDao {
 		CriteriaQuery<FriendList> cr = cb.createQuery(FriendList.class);
 		Root<FriendList> root = cr.from(FriendList.class);
 		Predicate userN = cb.equal(root.get("owner"), id);
-		cr.select(root).where(cb.and(userN));;
-		
+		cr.select(root).where(cb.and(userN));
+		;
+
 		Query<FriendList> query = s.createQuery(cr);
 		List<FriendList> Friends = query.getResultList();
 		return Friends;
@@ -60,7 +66,7 @@ public class FriendListDaoImpl implements FriendListDao {
 	@Transactional
 	public void updateFriends(int owner, User friend) {
 		Session s = sf.getCurrentSession();
-		FriendList friends = s.get(FriendList.class,owner);
+		FriendList friends = s.get(FriendList.class, owner);
 		Set<User> users = friends.getUsers();
 		users.add(friend);
 		friends.setUsers(users);
@@ -75,9 +81,7 @@ public class FriendListDaoImpl implements FriendListDao {
 		friends.add(friend);
 		FriendList fl = new FriendList(owner, friends);
 		s.save(fl);
-		
+
 	}
-	
-	
 
 }

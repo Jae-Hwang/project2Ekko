@@ -4,6 +4,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { NewsComponent } from './pages/news/news/news.component';
 import { SearchComponent } from './pages/food/search/search.component';
 import { TestPageComponent } from './shared/test-page/test-page.component';
+import { HomeComponent } from './shared/home/home.component';
 
 const routes: Routes = [
   {
@@ -15,8 +16,12 @@ const routes: Routes = [
     component: NewsComponent
   },
   {
-    path: 'testpage',
+    path: 'feed',
     component: TestPageComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: 'login',
@@ -39,7 +44,7 @@ const routes: Routes = [
     loadChildren: () => import('./core/group-message/group-message.module').then(mod => mod.GroupMessageModule)
   },
   {
-    path: '',
+    path: '**',
     component: PageNotFoundComponent
   }
 ];

@@ -19,8 +19,20 @@ public class PostService {
 		return postDao.findByUserId(uid, page);
 	}
 	
+	public String getMaxPageByUserId(int uid) {
+		return Integer.toString(postDao.getMaxPageUserId(uid));
+	}
+	
 	public void save(int uid, Post post) {
 		post.setOwner(new User(uid, "", ""));
 		postDao.save(post);
+	}
+	
+	public List<Post> findByFriends(List<User> friends, int page) {
+		return postDao.findByFriends(friends, page);
+	}
+	
+	public String getMaxPageByFriends(List<User> friends) {
+		return Integer.toString(postDao.getMaxPageFriends(friends));
 	}
 }

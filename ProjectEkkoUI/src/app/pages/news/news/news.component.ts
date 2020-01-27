@@ -12,19 +12,19 @@ export class NewsComponent implements OnInit {
   news$;
   news: News;
   newsCollection: any[];
-  category: String;
+  category: string;
 
   constructor( private newsService: NewsService) { }
 
   ngOnInit() {
   }
 
-  getNewsComponent(category: String){
+  getNewsComponent(category: string) {
     this.newsService.getNews(category)
     .subscribe
     (data => {
       this.newsCollection = data.articles;
       this.ngOnInit();
-    })
+    });
   }
 }

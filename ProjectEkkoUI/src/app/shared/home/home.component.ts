@@ -1,23 +1,21 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Reaction } from 'src/app/models/reaction.model';
 import { AppUser } from 'src/app/models/user.model';
-import { Comment } from 'src/app/models/comment.model';
-import { Post } from 'src/app/models/post.model';
-import { PostService } from 'src/app/services/post.service';
 import { Subscription } from 'rxjs';
+import { Post } from 'src/app/models/post.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
-  selector: 'app-test-page',
-  templateUrl: './test-page.component.html',
-  styleUrls: ['./test-page.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class TestPageComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy {
 
   currentUserSubscription: Subscription;
   currentUser: AppUser;
 
-  testPosts: Post[];
+  posts: Post[];
   postsSubscription: Subscription;
 
 
@@ -26,12 +24,10 @@ export class TestPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.currentUserSubscription = this.authService.$currentUser.subscribe(user => {
       this.currentUser = user;
-
-      this.authService.setTargetUser(this.currentUser);
     });
 
     this.postsSubscription = this.postService.$posts.subscribe(posts => {
-      this.testPosts = posts;
+      this.posts = posts;
     });
   }
 
@@ -40,5 +36,4 @@ export class TestPageComponent implements OnInit, OnDestroy {
       this.postsSubscription.unsubscribe();
     }
   }
-
 }

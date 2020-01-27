@@ -16,6 +16,9 @@ export class FriendsComponent implements OnInit, OnDestroy {
     username: ''
   };
 
+  targetUserSubscription: Subscription;
+  targetUser: AppUser;
+
   currentUserSubscription: Subscription;
   currentUser: AppUser;
 
@@ -26,11 +29,25 @@ export class FriendsComponent implements OnInit, OnDestroy {
 
   constructor(private friendService: FriendsService, private authService: AuthService, private router: Router) { }
 
+  submit() {
+    if (this.currentTable === undefined) {
+      this.friendService.save(this.currentUser.id, this.credentials);
+    } else {
+      this.friendService.update(this.currentUser.id, this.credentials);
+    }
+    this.credentials.username = '';
+  }
+
+  clickFriend(user: AppUser) {
+    this.authService.setTargetUser(user);
+    this.router.navigateByUrl('/friends/feed');
+  }
+
   ngOnInit() {
     this.currentUserSubscription = this.authService.$currentUser.subscribe(user => {
       this.currentUser = user;
     });
-    let check = this.authService.checkuser();
+    const check = this.authService.checkuser();
     if (check === false) {
       this.router.navigateByUrl('/login');
     }
@@ -38,21 +55,15 @@ export class FriendsComponent implements OnInit, OnDestroy {
     this.tableSubscription = this.friendService.$currentFriends.subscribe(user => {
       this.currentTable = user;
     });
-    console.log(this.currentTable);
-  }
-
-  submit() {
-    this.count++;
-    if (this.count > 1) {
-      this.friendService.update(this.currentUser.id, this.credentials);
-    } else {
-      this.friendService.save(this.currentUser.id, this.credentials);
-    }
   }
 
   ngOnDestroy() {
     if (this.currentUserSubscription !== undefined) {
       this.currentUserSubscription.unsubscribe();
+    }
+
+    if (this.tableSubscription !== undefined) {
+      this.tableSubscription.unsubscribe();
     }
   }
 }

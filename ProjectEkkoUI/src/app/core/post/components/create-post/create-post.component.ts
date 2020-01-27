@@ -15,13 +15,8 @@ export class CreatePostComponent implements OnInit, OnDestroy {
   currentUserSubscription: Subscription;
   currentUser: AppUser;
 
-  // tslint:disable-next-line: no-input-rename
-  @Input('input-posts')
-  posts: Post[];
-
-  // tslint:disable-next-line: no-output-rename
-  @Output('postsChange')
-  postsChange = new EventEmitter<Post[]>();
+  targetUserSubscription: Subscription;
+  targetUser: AppUser;
 
   // tslint:disable-next-line: no-output-rename
   @Output('pageChange')
@@ -36,8 +31,6 @@ export class CreatePostComponent implements OnInit, OnDestroy {
   save() {
     if (this.content !== '') {
       this.postService.save(this.content, this.currentUser.id);
-      // this.posts = [new Post(0, this.content, this.currentUser, [], [], new Date())].concat(this.posts);
-      // this.postsChange.emit(this.posts);
       this.content = '';
       this.placeholder = 'Enter New Post!';
 

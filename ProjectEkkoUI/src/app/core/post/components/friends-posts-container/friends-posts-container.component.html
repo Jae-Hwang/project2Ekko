@@ -1,7 +1,4 @@
 <div *ngIf='postsFetched()'>
-    <app-create-post *ngIf='selfFeed()' (pageChange)='pageChange($event)'></app-create-post>
-
-    <hr>
 
     <app-post *ngFor='let post of posts' [input-post]='post'></app-post>
 
@@ -18,12 +15,13 @@
             </label>
         </div>
     </div>
-    
+
     <div class='paging-container' *ngIf='maxPage && !pageType()'>
         <div ngbDropdown class="d-inline-block">
             <button class="btn btn-secondary" id="dropdownBasic1" ngbDropdownToggle>Page</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class='bg-secondary'>
-                <button ngbDropdownItem *ngFor='let page of pageArray' [ngClass]='dropdownClass(page)' (click)='clickPage(page)'> {{page}} </button>
+                <button ngbDropdownItem *ngFor='let page of pageArray' [ngClass]='dropdownClass(page)'
+                    (click)='clickPage(page)'> {{page}} </button>
             </div>
         </div>
     </div>

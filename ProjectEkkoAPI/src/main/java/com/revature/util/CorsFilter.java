@@ -44,7 +44,7 @@ public class CorsFilter implements Filter {
 				"Access-Control-Allow-Origin, Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Authorization, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Credentials");
 		httpResponse.addHeader("Access-Control-Allow-Headers",
 				"Access-Control-Allow-Origin, Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Authorization, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Credentials");
-		httpResponse.addHeader("Access-Control-Expose-Headers", "X-test");
+		httpResponse.addHeader("Access-Control-Expose-Headers", "X-page");
 		
 		if (httpRequest.getMethod().equalsIgnoreCase("OPTIONS")) {
 			httpResponse.setStatus(HttpServletResponse.SC_OK);

@@ -24,11 +24,11 @@ public class CommentController {
 	@Autowired
 	private Log log;
 	
-	@GetMapping("/comments/{pid}/{page}")
-	private ResponseEntity<List<Comment>> getCommentsByPostId(@PathVariable("pid") int pid, @PathVariable("page") int page) {
-		log.info("Method: GET, uri: /comments/" + pid + "(post id)/" + page + "(page)");
+	@GetMapping("/comments/{pid}")
+	private ResponseEntity<List<Comment>> getCommentsByPostId(@PathVariable("pid") int pid) {
+		log.info("Method: GET, uri: /comments/" + pid + "(post id)");
 		
-		List<Comment> comments = commentService.getCommentsByPostId(pid, page);
+		List<Comment> comments = commentService.getCommentsByPostId(pid);
 		if (comments.size() == 0) {
 			log.info("No record found.");
 			return ResponseEntity.noContent().build();
