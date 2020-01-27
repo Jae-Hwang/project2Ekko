@@ -36,7 +36,13 @@ public class UserDaoImpl implements UserDao{
 		
 		Query<User> query = s.createQuery(cr);
 		List<User> Finaluser = query.getResultList();
-		return Finaluser.get(0);
+		User out = new User();
+		for (User u : Finaluser) {
+			out.setId(u.getId());
+			out.setUsername(u.getUsername());
+			out.setPassword("****");
+		}
+		return out;
 	}
 
 	@Override
@@ -48,9 +54,10 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
+	@Transactional
 	public User FindById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = sf.getCurrentSession();
+		return s.get(User.class, id);
 	}
 
 }

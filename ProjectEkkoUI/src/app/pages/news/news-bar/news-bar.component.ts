@@ -10,13 +10,12 @@ import { NewsService } from '../news.service';
 export class NewsBarComponent implements OnInit {
   newsCollection: any;
 
-  constructor(private newsService : NewsService, private newsComponent: NewsComponent) { }
+  constructor(private newsService: NewsService, private newsComponent: NewsComponent) { }
 
   ngOnInit() {
   }
 
-  getNews(category: String){
+  getNews(category: string) {
     this.newsComponent.getNewsComponent(category);
   }
 }
-

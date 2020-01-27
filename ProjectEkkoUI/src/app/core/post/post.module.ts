@@ -6,6 +6,12 @@ import { ReactionComponent } from './components/reaction/reaction.component';
 import { CommentsContainerComponent } from './components/comments-container/comments-container.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { ReactionsContainerComponent } from './components/reactions-container/reactions-container.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CreateCommentComponent } from './components/create-comment/create-comment.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -16,10 +22,16 @@ import { ReactionsContainerComponent } from './components/reactions-container/re
     ReactionComponent,
     PostsContainerComponent,
     CommentsContainerComponent,
-    ReactionsContainerComponent
+    ReactionsContainerComponent,
+    CreateCommentComponent,
+    CreatePostComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgbModule,
+    FormsModule,
+    BrowserModule,
+    BrowserAnimationsModule
   ],
   exports: [
     PostComponent,

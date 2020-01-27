@@ -12,6 +12,10 @@ export class CommentsContainerComponent implements OnInit {
   @Input('input-comments')
   comments: Comment[];
 
+  // tslint:disable-next-line: no-input-rename
+  @Input('input-id')
+  id: number;
+
   constructor() { }
 
   ngOnInit() {

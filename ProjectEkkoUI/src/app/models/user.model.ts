@@ -1,7 +1,9 @@
 export class AppUser {
 
     constructor(
-        public username = ''
+        public id = 0,
+        public username = '',
+        public password = ' '
     ) { }
 
 }

@@ -17,7 +17,7 @@ public class CommentService {
 	private CommentDao commentDao;
 	
 	public List<Comment> getCommentsByPostId(int pid, int page) {
-		return commentDao.getCommentsByPostId(pid, page);
+		return commentDao.getCommentsByPostId(pid);
 	}
 	
 	public void save(int uid, int pid, Comment comment) {

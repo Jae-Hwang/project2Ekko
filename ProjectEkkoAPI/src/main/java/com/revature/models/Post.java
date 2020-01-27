@@ -1,6 +1,7 @@
 package com.revature.models;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -75,6 +76,13 @@ public class Post {
 		this.comments = comments;
 		this.reactions = reactions;
 		this.upserted = upserted;
+	}
+
+	public Post(String content) {
+		super();
+		this.content = content;
+		this.comments = new HashSet<>();
+		this.reactions = new HashSet<>();
 	}
 
 	public Post(int id) {

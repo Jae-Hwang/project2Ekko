@@ -9,6 +9,7 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,27 +31,21 @@ public class CommentDaoImpl implements CommentDao {
 
 	@Override
 	@Transactional
-	public List<Comment> getCommentsByPostId(int pid, int page) {
-
-		if (page < 1) {
-			page = 1;
-		}
+	public List<Comment> getCommentsByPostId(int pid) {
 
 		Session s = sf.getCurrentSession();
 		CriteriaBuilder cb = s.getCriteriaBuilder();
 		CriteriaQuery<Comment> cr = cb.createQuery(Comment.class);
 		Root<Comment> root = cr.from(Comment.class);
+		cr.orderBy(cb.desc(root.get("upserted")));
 
 		// creates query
 		CriteriaQuery<Comment> selectedQuery = cr.select(root).where(cb.equal(root.get("parent").get("id"), pid));
 
-		// creates paging
-		TypedQuery<Comment> typedQuery = s.createQuery(selectedQuery);
-		typedQuery.setFirstResult((page - 1) * PAGE_COUNT);
-		typedQuery.setMaxResults(PAGE_COUNT);
+		Query<Comment> query = s.createQuery(selectedQuery);
 
 		// executes query
-		List<Comment> comments = typedQuery.getResultList();
+		List<Comment> comments = query.getResultList();
 		return comments;
 	}
 

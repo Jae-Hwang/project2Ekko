@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import java.util.HashSet;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -62,6 +63,19 @@ public class Reaction {
 	public Reaction(int id) {
 		super();
 		this.id = id;
+		this.owner = new User(0, "", "");
+	}
+
+	public Reaction(User owner, int type) {
+		super();
+		this.owner = owner;
+		this.type = type;
+	}
+
+	public Reaction(int uid, int type) {
+		super();
+		this.owner = new User(uid, "", "");
+		this.type = type;
 	}
 
 	public int getId() {

@@ -1,7 +1,38 @@
 <div>
-    <button 
+    <button @fade
         type="button" 
-        class="btn btn-secondary reactionbutton" 
+        [ngClass]='userOwned(entry)' 
         *ngFor='let entry of uniqueList'
         (click)='clickReaction(entry)'>{{entry}} : {{reactionMap.get(entry)}}</button>
+
+
+    <div ngbDropdown placement="right" class="d-inline-block dropright">
+        <button class="btn btn-secondary" id="dropdownBasic2" ngbDropdownToggle> </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class='bg-secondary'>
+            <button ngbDropdownItem 
+                class='bg-secondary text-white' 
+                *ngIf='userNotOwned(1)' 
+                (click)='addReaction(1)'>1</button>
+            <button ngbDropdownItem 
+                class='bg-secondary text-white' 
+                *ngIf='userNotOwned(2)' 
+                (click)='addReaction(2)'>2</button>
+            <button ngbDropdownItem 
+                class='bg-secondary text-white' 
+                *ngIf='userNotOwned(3)' 
+                (click)='addReaction(3)'>3</button>
+            <button ngbDropdownItem 
+                class='bg-secondary text-white' 
+                *ngIf='userNotOwned(4)' 
+                (click)='addReaction(4)'>4</button>
+            <button ngbDropdownItem 
+                class='bg-secondary text-white' 
+                *ngIf='userNotOwned(5)' 
+                (click)='addReaction(5)'>5</button>
+            <button ngbDropdownItem 
+                class='bg-secondary text-white' 
+                *ngIf='userNotOwned(6)' 
+                (click)='addReaction(6)'>6</button>
+        </div>
+    </div>
 </div>

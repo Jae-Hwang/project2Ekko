@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class NewsService {
 
   private newsApiKey = `https://newsapi.org/v2/top-headlines?country=us&apiKey=ebf4bd89e8cc4bde97eacbaf2b8662bf`;
-  private url = 'https://newsapi.org/v2/'
+  private url = 'https://newsapi.org/v2/';
   private apiKey = '&apiKey=ebf4bd89e8cc4bde97eacbaf2b8662bf';
 
   // Individual Query Parameters
@@ -19,10 +19,10 @@ export class NewsService {
   private sports = this.url + 'top-headlines?country=us&category=sports' + this.apiKey;
   private business = this.url + 'top-headlines?country=us&category=business' + this.apiKey;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor( private httpClient: HttpClient) { }
 
-  getNews(category: String): Observable<any> {
-    console.log("Inside News Server");
+  getNews(category: string): Observable<any> {
+    console.log('Inside News Server');
     switch (category) {
       case 'worldNews':
         console.log(this.worldNews);

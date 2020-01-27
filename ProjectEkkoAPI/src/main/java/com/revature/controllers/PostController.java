@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.Post;
+import com.revature.models.PostDto;
 import com.revature.services.PostService;
 import com.revature.util.Log;
 
@@ -33,18 +34,19 @@ public class PostController {
 			log.info("No record found.");
 			return ResponseEntity.noContent().build();
 		} else {
-			return ResponseEntity.status(HttpStatus.OK).header("X-test", "test").body(posts);
+			return ResponseEntity.status(HttpStatus.OK).header("X-page", "5").body(posts);
 		}
 	}
 
-	@PostMapping("/posts/{uid}")
-	public ResponseEntity<Post> save(@PathVariable("uid") int uid, @RequestBody Post post) {
-		log.info("Method: POST, uri: /posts/" + uid + "(user id)");
+	@PostMapping("/posts")
+	public ResponseEntity<Post> save(@RequestBody PostDto postDto) {
+		log.info("Method: POST, uri: /posts");
+		log.info("Data transfered: " + postDto);
 		
-		if (post != null) {
-			postService.save(uid, post);
-			log.info("Successfully inserted the post");
-			return ResponseEntity.ok().header("X-test", "test").build();
+		if (postDto != null) {
+			postService.save(postDto.getUid(), new Post(postDto.getContent()));
+			log.info("Successfully inserted the Post");
+			return ResponseEntity.ok().build();
 		} else {
 			log.info("Request Body is not found.");
 			return ResponseEntity.badRequest().build();
