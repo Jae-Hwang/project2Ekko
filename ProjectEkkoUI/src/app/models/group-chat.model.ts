@@ -9,5 +9,5 @@ export class GroupChat {
        public groupChatMessages: GroupChatMessage[] = [],
        public userList: AppUser[] = []
     ) {}
-    
+
 }

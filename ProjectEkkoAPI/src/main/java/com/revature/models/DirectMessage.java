@@ -40,6 +40,18 @@ public class DirectMessage implements Serializable{
 	public DirectMessage() {
 		super();
 	}
+	
+	public DirectMessage(int id) {
+		super();
+		this.id = id;
+	}
+
+	public DirectMessage(int user1Id, int user2Id, String message) {
+		super();
+		this.user1Id = user1Id;
+		this.user2Id = user2Id;
+		this.message = message;
+	}
 
 	public DirectMessage(int id, int user1Id, int user2Id, String message) {
 		super();
@@ -80,13 +92,6 @@ public class DirectMessage implements Serializable{
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
-	public DirectMessage(int user1Id, int user2Id, String message) {
-		super();
-		this.user1Id = user1Id;
-		this.user2Id = user2Id;
-		this.message = message;
-	}
 
 	@Override
 	public int hashCode() {
@@ -108,7 +113,8 @@ public class DirectMessage implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Message [id=" + id + ", user1Id=" + user1Id + ", user2Id=" + user2Id + ", message=" + message + "]";
+		return "DirectMessage [id=" + id + ", user1Id=" + user1Id + ", user2Id=" + user2Id + ", message=" + message
+				+ "]";
 	}
-
+	
 }

@@ -7,5 +7,5 @@ export class GroupChatMessage {
         public chatMessge = 0,
         public groupChat: GroupChat[] = []
     ) {}
-    
+
 }

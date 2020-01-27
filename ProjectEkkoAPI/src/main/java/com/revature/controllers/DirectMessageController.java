@@ -23,8 +23,8 @@ public class DirectMessageController {
 	
 	@GetMapping("/directMsg/{uid}")
 	public ResponseEntity<List<DirectMessage>> findById(@PathVariable("uid") int uid) {
-		
 		List<DirectMessage> dirMsgs = DMService.findById(uid);
+		
 		return ResponseEntity.status(HttpStatus.OK).header("Not X-test", "test").body(dirMsgs);
 		
 	}

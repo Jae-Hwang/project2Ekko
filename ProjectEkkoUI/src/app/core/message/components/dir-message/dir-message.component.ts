@@ -12,11 +12,15 @@ import { DirMessage } from 'src/app/models/dir-msg.model';
 })
 export class DirMessageComponent implements OnInit {
 
+  credentials = {
+    id: 0
+  };
+
   currentUserSubscription: Subscription;
   currentUser: AppUser;
 
   dirMessages = {
-    user1Id: this.currentUser.id,
+    user1Id: 0,
     user2Id: 0,
     message: ''
   };
@@ -37,7 +41,12 @@ export class DirMessageComponent implements OnInit {
     });
   }
 
+  // getOldDMs() {
+  //   this.dirMsgService.getOldDMs(this.currentUser.id);
+  // }
+
   createNewDM() {
+    this.dirMessages.user1Id = this.currentUser.id;
     this.dirMsgService.createNewDM(this.dirMessages);
   }
 

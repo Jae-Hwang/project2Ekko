@@ -30,6 +30,7 @@ export class AuthService {
         if (data.username !== null) {
         this.router.navigateByUrl('');
         this.user = data;
+        console.log(data);
         this.currentUserStream.next(data);
         } else {
           this.loginErrorStream.next('Failed to Login');

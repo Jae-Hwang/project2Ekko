@@ -6,5 +6,5 @@ export class DirMessage {
         public user2Id = 0,
         public message = ''
     ) {}
-    
+
 }

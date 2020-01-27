@@ -9,6 +9,9 @@ import { ReplaySubject } from 'rxjs';
 })
 export class DirMsgService {
 
+  // private currentUserStream = new ReplaySubject<Friendlist>();
+  // $currentUser = this.currentUserStream.asObservable();
+
   private currentDMsStream = new ReplaySubject<DirMessage[]>();
   $currentDMs = this.currentDMsStream.asObservable();
 
@@ -19,7 +22,7 @@ export class DirMsgService {
       withCredentials: true
     }).subscribe(
       data => {
-        this.router.navigateByUrl('/home');
+        this.getOldDMs(dirMessages.user1Id);
       },
       err => {
         console.log('You messsed up');
@@ -28,9 +31,11 @@ export class DirMsgService {
   }
 
   getOldDMs(uid) {
+    console.log(uid);
     this.httpClient.get<DirMessage[]>(`http://localhost:8080/ProjectEkko/directMsg/${uid}`, {
       withCredentials: true
     }).subscribe(data => {
+      console.log(data);
       this.currentDMsStream.next(data);
     },
     err => {

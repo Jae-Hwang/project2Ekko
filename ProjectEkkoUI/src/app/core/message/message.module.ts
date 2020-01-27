@@ -5,9 +5,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MessageRoutingModule } from './message-routing.module';
-import { HttpClientModule } from '@angular/common/http';
-
-
 
 @NgModule({
   declarations: [
@@ -15,11 +12,13 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     CommonModule,
-    HttpClientModule,
     NgbModule,
     FormsModule,
     RouterModule,
     MessageRoutingModule
+  ],
+  exports: [
+    DirMessageComponent
   ]
 })
 export class MessageModule { }
