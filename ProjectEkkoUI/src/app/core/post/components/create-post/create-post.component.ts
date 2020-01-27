@@ -15,11 +15,14 @@ export class CreatePostComponent implements OnInit, OnDestroy {
   currentUserSubscription: Subscription;
   currentUser: AppUser;
 
+  targetUserSubscription: Subscription;
+  targetUser: AppUser;
+
   // tslint:disable-next-line: no-output-rename
   @Output('pageChange')
   pageChange = new EventEmitter<number>();
 
-  content = '';
+  content = ''; 
 
   placeholder = 'Enter New Post!';
 
