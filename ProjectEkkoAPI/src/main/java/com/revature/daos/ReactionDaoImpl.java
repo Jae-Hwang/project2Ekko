@@ -52,7 +52,7 @@ public class ReactionDaoImpl implements ReactionDao {
 	@Transactional
 	public List<Reaction> getReactionsByCommentId(int cid) {
 
-
+		
 		Session s = sf.getCurrentSession();
 		CriteriaBuilder cb = s.getCriteriaBuilder();
 		CriteriaQuery<Reaction> cr = cb.createQuery(Reaction.class);

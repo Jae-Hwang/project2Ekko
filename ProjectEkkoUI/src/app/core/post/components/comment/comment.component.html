@@ -1,8 +1,8 @@
-<div [ngClass]='class'>
+<div @fade [ngClass]='class'>
     <div class="card-body">
         <span>
             <p class="card-title">{{comment.owner.username}}</p>
-            <p class="card-subtitle mb-2 text-muted upserted">{{comment.upserted}}</p>
+            <p class="card-subtitle mb-2 text-muted upserted">{{comment.upserted | date:'medium'}}</p>
         </span>
         <span class="card-text">
             {{comment.content}}

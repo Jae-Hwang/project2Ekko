@@ -1,13 +1,23 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Comment } from 'src/app/models/comment.model';
 import { Post } from 'src/app/models/post.model';
 import { AppUser } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  styleUrls: ['./post.component.css'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({ opacity: 0 }),
+        animate(500, style({ opacity: 1 }))
+      ])
+    ])
+  ]
 })
 export class PostComponent implements OnInit, OnDestroy {
 
@@ -26,6 +36,10 @@ export class PostComponent implements OnInit, OnDestroy {
     if (this.post.owner.id === this.currentUser.id) {
       this.class = 'card owned-card';
     }
+  }
+
+  commentsChange(comments: Comment[]) {
+    this.post.comments = comments;
   }
 
   ngOnInit() {

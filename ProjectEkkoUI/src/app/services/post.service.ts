@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Post } from '../models/post.model';
 import { ReplaySubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { PostDto } from '../models/postDto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,21 @@ export class PostService {
         }
       );
     }
+  }
+
+  save(content: string, uid: number) {
+    console.log(`Content: ${content}, uid: ${uid}`);
+    const postDto = new PostDto(content, uid);
+    const url = `http://localhost:8080/ProjectEkko/posts`;
+    this.httpClient.post(url, postDto, {
+      withCredentials: true
+    }).subscribe(
+      data => {
+        console.log('Responded Okay');
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 }

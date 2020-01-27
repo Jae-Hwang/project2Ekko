@@ -5,4 +5,9 @@
   }
 
 #fixedNavbar{
+  border-bottom: solid #6c757d 2px;
+}
+
+.empty-block {
+  height: 5em;
 }

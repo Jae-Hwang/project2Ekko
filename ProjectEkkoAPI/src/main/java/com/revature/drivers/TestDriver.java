@@ -48,7 +48,7 @@ public class TestDriver {
 		// commentDao.save(new Comment(0, "Test Comment 3", new User(152, "", ""), new
 		// Post(753), new HashSet<>(), null));
 
-		List<Comment> comments = commentDao.getCommentsByPostId(753, 1);
+		List<Comment> comments = commentDao.getCommentsByPostId(753);
 		for (Comment comment : comments) {
 			log.info(comment);
 		}

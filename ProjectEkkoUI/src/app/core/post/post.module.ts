@@ -10,6 +10,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateCommentComponent } from './components/create-comment/create-comment.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -27,7 +29,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    BrowserModule,
+    BrowserAnimationsModule
   ],
   exports: [
     PostComponent,
