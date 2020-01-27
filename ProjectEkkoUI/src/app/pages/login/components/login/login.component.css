@@ -1,7 +1,7 @@
 #space{
     width: 100vw;
     height: 100vh;
-    background-image: radial-gradient(circle, rgb(34, 161, 235), #5a0bc2);
+    /* background-image: radial-gradient(circle, rgb(34, 161, 235), #5a0bc2); */
     position: absolute;
     left: 0;
     top: 0;
@@ -18,7 +18,7 @@ form{
 h1{
     text-transform: uppercase;
     font-size: 1.75em;
-    color: white;
+    color: rgb(70, 70, 70);
 }
 
 input[type = "text"],input[type = "password"] {
@@ -27,10 +27,10 @@ input[type = "text"],input[type = "password"] {
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid white;
+    border: 2px solid rgb(121, 121, 121);
     padding: 13px 10px;
     width: 200px;
-    outline: white;
+    outline: black;
     color: black;
     border-radius: 13px;
     background-color: white;
@@ -42,16 +42,16 @@ input[type = "text"],input[type = "password"] {
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid white;
+    border: 2px solid rgb(121, 121, 121);
     padding: 14px 10px;
     width: 100px;
     outline: none;
-    color: white;
+    color: rgb(70, 70, 70);
     border-radius: 13px;
     cursor: pointer;
   }
 
   p{
     font-size: .75em;
-    color: white;
+    color: black;
   }
