@@ -22,7 +22,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
   @Output('pageChange')
   pageChange = new EventEmitter<number>();
 
-  content = ''; 
+  content = '';
 
   placeholder = 'Enter New Post!';
 

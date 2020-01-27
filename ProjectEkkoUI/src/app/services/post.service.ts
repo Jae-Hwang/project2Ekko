@@ -14,7 +14,7 @@ export class PostService {
   private maxPageStream = new ReplaySubject<number>(1);
   $maxPage = this.maxPageStream.asObservable();
 
-  private postsStream = new ReplaySubject<Post[]>(1);
+  private postsStream = new ReplaySubject<Post[]>(1, 500);
   $posts = this.postsStream.asObservable();
 
   constructor(private httpClient: HttpClient) {

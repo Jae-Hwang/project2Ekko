@@ -35,6 +35,7 @@ public class FriendListDaoImpl implements FriendListDao {
 		List <User> newuser = new ArrayList<User>();
 		for(User u: user) {
 			User m = new User();
+			m.setId(u.getId());
 			m.setUsername(u.getUsername());
 			newuser.add(m);
 		}

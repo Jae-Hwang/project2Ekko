@@ -12,6 +12,9 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class PostsContainerComponent implements OnInit, OnDestroy {
 
+  targetUserSubscription: Subscription;
+  targetUser: AppUser;
+
   currentUserSubscription: Subscription;
   currentUser: AppUser;
 
@@ -48,22 +51,30 @@ export class PostsContainerComponent implements OnInit, OnDestroy {
     }
   }
 
+  selfFeed() {
+    return (this.currentUser === this.targetUser);
+  }
+
+  postsFetched() {
+    return (this.posts !== undefined);
+  }
+
   clickPage(page: number) {
     this.currentPage = page;
-    this.postService.getPostsByUserId(this.currentUser.id, this.currentPage);
+    this.postService.getPostsByUserId(this.targetUser.id, this.currentPage);
   }
 
   clickLeft() {
     if (this.currentPage > 1) {
       this.currentPage -= 1;
-      this.postService.getPostsByUserId(this.currentUser.id, this.currentPage);
+      this.postService.getPostsByUserId(this.targetUser.id, this.currentPage);
     }
   }
 
   clickRight() {
     if (this.currentPage < this.maxPage) {
       this.currentPage += 1;
-      this.postService.getPostsByUserId(this.currentUser.id, this.currentPage);
+      this.postService.getPostsByUserId(this.targetUser.id, this.currentPage);
     }
   }
 
@@ -75,10 +86,6 @@ export class PostsContainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  postsFetched() {
-    return (this.posts !== undefined);
-  }
-
   setPageArray() {
     this.pageArray = new Array();
 
@@ -88,9 +95,14 @@ export class PostsContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.targetUserSubscription = this.authService.$targetUser.subscribe(user => {
+      this.targetUser = user;
+      console.log(`Requesting Posts of user: ${user.username}`);
+      this.postService.getPostsByUserId(this.targetUser.id, 1);
+    });
+
     this.currentUserSubscription = this.authService.$currentUser.subscribe(user => {
       this.currentUser = user;
-      this.postService.getPostsByUserId(this.currentUser.id, 1);
     });
 
     this.maxPageSubscription = this.postService.$maxPage.subscribe(maxPage => {
@@ -102,6 +114,14 @@ export class PostsContainerComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.currentUserSubscription !== undefined) {
       this.currentUserSubscription.unsubscribe();
+    }
+
+    if (this.targetUserSubscription !== undefined) {
+      this.targetUserSubscription.unsubscribe();
+    }
+
+    if (this.maxPageSubscription !== undefined) {
+      this.maxPageSubscription.unsubscribe();
     }
   }
 

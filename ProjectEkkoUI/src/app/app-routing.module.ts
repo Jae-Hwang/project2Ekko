@@ -15,7 +15,7 @@ const routes: Routes = [
     component: NewsComponent
   },
   {
-    path: 'testpage',
+    path: 'feed',
     component: TestPageComponent
   },
   {

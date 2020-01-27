@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.daos.FriendListDao;
 import com.revature.models.Post;
 import com.revature.models.PostDto;
+import com.revature.models.User;
 import com.revature.services.PostService;
 import com.revature.util.Log;
 
@@ -24,6 +26,9 @@ public class PostController {
 
 	@Autowired
 	private Log log;
+	
+	@Autowired
+	private FriendListDao flDao;
 
 	@GetMapping("/posts/{uid}/{page}")
 	public ResponseEntity<List<Post>> findByUserId(@PathVariable("uid") int uid, @PathVariable("page") int page) {
@@ -35,6 +40,21 @@ public class PostController {
 			return ResponseEntity.noContent().build();
 		} else {
 			String maxPage = postService.getMaxPageByUserId(uid);
+			return ResponseEntity.status(HttpStatus.OK).header("X-page", maxPage).body(posts);
+		}
+	}
+	
+	@GetMapping("/posts/friends/{uid}/{page}")
+	public ResponseEntity<List<Post>> findByFriends(@PathVariable("uid") int uid, @PathVariable("page") int page) {
+		log.info("Method: GET, uri: /posts/friends/" + uid + "(user id)/" + page + "(page)");
+		
+		List<User> friends = flDao.findAll(uid);
+		List<Post> posts = postService.findByFriends(friends, page);
+		if (posts.size() == 0) {
+			log.info("No record found.");
+			return ResponseEntity.noContent().build();
+		} else {
+			String maxPage = postService.getMaxPageByFriends(friends);
 			return ResponseEntity.status(HttpStatus.OK).header("X-page", maxPage).body(posts);
 		}
 	}
