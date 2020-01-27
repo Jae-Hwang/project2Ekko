@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { RegisterService } from 'src/app/services/register.service';
 import { Subscription } from 'rxjs';
-import { Friendlist } from 'src/app/models/friendlist.model';
 import { FriendsService } from 'src/app/services/friends.service';
+import { AppUser } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-friends',
@@ -15,17 +16,41 @@ export class FriendsComponent implements OnInit, OnDestroy {
     username: ''
   };
 
-  friends = new Friendlist();
+  currentUserSubscription: Subscription;
+  currentUser: AppUser;
 
-  constructor(private friendService: FriendsService) { }
+  currentTable: AppUser[];
+  tableSubscription: Subscription;
+
+  count = 0;
+
+  constructor(private friendService: FriendsService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.currentUserSubscription = this.authService.$currentUser.subscribe(user => {
+      this.currentUser = user;
+    });
+    const check = this.authService.checkuser();
+    if (check === false) {
+      this.router.navigateByUrl('/login');
+    }
+    this.friendService.getFriends(this.currentUser.id);
+    this.tableSubscription = this.friendService.$currentFriends.subscribe(user => {
+      this.currentTable = user;
+    });
   }
 
-  save() {
-    this.friendService.save(this.credentials);
+  submit() {
+    if (this.currentTable === undefined) {
+      this.friendService.save(this.currentUser.id, this.credentials);
+    } else {
+      this.friendService.update(this.currentUser.id, this.credentials);
+    }
   }
 
   ngOnDestroy() {
+    if (this.currentUserSubscription !== undefined) {
+      this.currentUserSubscription.unsubscribe();
+    }
   }
 }

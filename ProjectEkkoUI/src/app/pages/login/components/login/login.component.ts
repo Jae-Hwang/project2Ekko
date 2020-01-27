@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
+import { Friendlist } from 'src/app/models/friendlist.model';
 
 @Component({
   selector: 'app-login',
@@ -30,6 +31,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.login(this.credentials);
   }
 
+  logout() {
+    this.authService.logout();
+  }
 
   ngOnDestroy() {
     //this.errorMessageSubscription.unsubscribe();

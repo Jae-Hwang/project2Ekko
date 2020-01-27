@@ -29,9 +29,16 @@ public class FriendListDaoImpl implements FriendListDao {
 	
 	@Override
 	@Transactional
-	public FriendList findAll(int owner) {
+	public List<User> findAll(int owner) {
 		Session s = sf.getCurrentSession();
-		return s.get(FriendList.class,owner);
+		List<User> user = new ArrayList<User>(s.get(FriendList.class,owner).getUsers());
+		List <User> newuser = new ArrayList<User>();
+		for(User u: user) {
+			User m = new User();
+			m.setUsername(u.getUsername());
+			newuser.add(m);
+		}
+		return newuser;
 	}
 
 	@Override
