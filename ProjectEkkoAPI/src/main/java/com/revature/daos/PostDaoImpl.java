@@ -88,6 +88,7 @@ public class PostDaoImpl implements PostDao {
 	}
 
 	@Override
+	@Transactional
 	public int getMaxPageUserId(int uid) {
 		Session s = sf.getCurrentSession();
 
@@ -99,6 +100,7 @@ public class PostDaoImpl implements PostDao {
 		long result = s.createQuery(cr).getSingleResult();
 		log.info("Count of result: " + result);
 		int page = (int) Math.ceil(result / (double) PAGE_COUNT);
+		log.info("Max Page: " + page);
 		return page;
 	}
 

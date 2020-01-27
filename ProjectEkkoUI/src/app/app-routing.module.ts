@@ -31,7 +31,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/friends/friends.module').then(mod => mod.FriendsModule)
   },
   {
-    path: '',
+    path: '**',
     component: PageNotFoundComponent
   }
 ];

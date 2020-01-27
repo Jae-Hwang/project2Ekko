@@ -1,4 +1,4 @@
-<p>comments: {{comments.length}}</p> 
+<p>comments: {{comments?.length}}</p> 
 <div *ngFor='let comment of comments'>
     <app-comment [input-comment]='comment' [input-id]='id'></app-comment>
 </div>

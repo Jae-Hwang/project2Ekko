@@ -26,4 +26,9 @@ export class CommentService {
       }
     );
   }
+
+  getCommentsByPostIdAsObs(id: number) {
+    console.log(`pid: ${id}`);
+    return this.httpClient.get<Comment[]>(`http://localhost:8080/ProjectEkko/comments/${id}`);
+  }
 }

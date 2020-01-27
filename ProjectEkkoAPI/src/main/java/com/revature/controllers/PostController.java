@@ -34,7 +34,8 @@ public class PostController {
 			log.info("No record found.");
 			return ResponseEntity.noContent().build();
 		} else {
-			return ResponseEntity.status(HttpStatus.OK).header("X-page", "5").body(posts);
+			String maxPage = postService.getMaxPageByUserId(uid);
+			return ResponseEntity.status(HttpStatus.OK).header("X-page", maxPage).body(posts);
 		}
 	}
 
