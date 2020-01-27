@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.errorMessageSubscription = this.registerService.$registerError.subscribe(errorMessage => {
       this.errorMessage = errorMessage;
     });
-    let check = this.authService.checkuser();
+    const check = this.authService.checkuser();
     if (check === true) {
       this.router.navigateByUrl('');
     }

@@ -27,6 +27,7 @@ export class FriendsService {
       withCredentials: true
     }).subscribe(
       data => {
+        this.getFriends(u);
       },
       err => {
       }
@@ -39,6 +40,7 @@ export class FriendsService {
       withCredentials: true
     }).subscribe(
       data => {
+        this.getFriends(u);
       },
       err => {
       }

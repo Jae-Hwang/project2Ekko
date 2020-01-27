@@ -30,7 +30,7 @@ export class FriendsComponent implements OnInit, OnDestroy {
     this.currentUserSubscription = this.authService.$currentUser.subscribe(user => {
       this.currentUser = user;
     });
-    let check = this.authService.checkuser();
+    const check = this.authService.checkuser();
     if (check === false) {
       this.router.navigateByUrl('/login');
     }
