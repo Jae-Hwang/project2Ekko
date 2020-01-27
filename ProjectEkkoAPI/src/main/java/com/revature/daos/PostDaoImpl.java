@@ -130,9 +130,9 @@ public class PostDaoImpl implements PostDao {
 		
 		Predicate combined = ors.get(0);
 		for (int i = 1; i < ors.size(); i++) {
-			cb.or(combined, ors.get(i));
+			combined = cb.or(combined, ors.get(i));
 		}
-		
+
 		CriteriaQuery<Post> selectedQuery = cr.select(root).where(combined);
 
 		// creates paging
@@ -146,6 +146,7 @@ public class PostDaoImpl implements PostDao {
 	}
 
 	@Override
+	@Transactional
 	public int getMaxPageFriends(List<User> friends) {
 		Session s = sf.getCurrentSession();
 
@@ -161,7 +162,7 @@ public class PostDaoImpl implements PostDao {
 		
 		Predicate combined = ors.get(0);
 		for (int i = 1; i < ors.size(); i++) {
-			cb.or(combined, ors.get(i));
+			combined = cb.or(combined, ors.get(i));
 		}
 		
 		cr.where(combined);
