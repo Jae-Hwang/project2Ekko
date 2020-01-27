@@ -31,6 +31,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/friends/friends.module').then(mod => mod.FriendsModule)
   },
   {
+    path: 'dirmsg',
+    loadChildren: () => import('./core/message/message.module').then(mod => mod.MessageModule)
+  },
+  {
     path: '',
     component: PageNotFoundComponent
   }

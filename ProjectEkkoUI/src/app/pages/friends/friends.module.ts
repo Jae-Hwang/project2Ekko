@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FriendsComponent } from './components/friends/friends.component';
-import { FriendsRoutingModule } from './friends-routing.module'
+import { FriendsRoutingModule } from './friends-routing.module';
 
 @NgModule({
   declarations: [FriendsComponent],
@@ -16,7 +16,6 @@ import { FriendsRoutingModule } from './friends-routing.module'
     NgbModule,
     RouterModule,
     FriendsRoutingModule
-
   ]
 })
 export class FriendsModule { }

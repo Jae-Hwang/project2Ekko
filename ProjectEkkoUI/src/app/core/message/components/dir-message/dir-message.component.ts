@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { AppUser } from 'src/app/models/user.model';
 import { DirMsgService } from 'src/app/services/dir-msg.service';
 import { DirMessage } from 'src/app/models/dir-msg.model';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dir-message',
@@ -23,21 +22,18 @@ export class DirMessageComponent implements OnInit {
   };
 
   allDirMsgs: DirMessage[] = [];
+  dmSubscription: Subscription;
 
-  constructor(private authService: AuthService, private dirMsgService: DirMsgService, private httpClient: HttpClient) { }
+  constructor(private authService: AuthService, private dirMsgService: DirMsgService) { }
 
   ngOnInit() {
     this.currentUserSubscription = this.authService.$currentUser.subscribe(user => {
       this.currentUser = user;
     });
 
-    this.httpClient.get<DirMessage[]>(`http://localhost:8080/ProjectEkko/directMsg/{uid}`, {
-      withCredentials: true
-    }).subscribe(data => {
-      this.allDirMsgs = data;
-    },
-    err => {
-      console.log('No dms, sad emoji ');
+    this.dirMsgService.getOldDMs(this.currentUser.id);
+    this.dmSubscription = this.dirMsgService.$currentDMs.subscribe(dms => {
+      this.allDirMsgs = dms;
     });
   }
 

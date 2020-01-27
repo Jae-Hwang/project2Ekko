@@ -1,10 +1,13 @@
 <div id="new-dm">
     <form class="create-new-dm" (submit)="createNewDM">
         <h2>Person to DM</h2>
-        <input type="number" id="inputRecieverId" name="input-reciever-id" class="form-control" placeholder="Dan Pickles" required autofocus [(ngModel)]="dirMessages.user2Id">
+        <!-- <input type="text" id="inputQuizTitle" name="input-quiz-title" class="form-control" placeholder="Quiz Title" required
+        autofocus [(ngModel)]="quizzes.quiz_title"> -->
+        <input type="number" id="inputRecieverId" name="input-reciever-id" class="form-control" placeholder="Dan Pickles" required
+        autofocus [(ngModel)]="dirMessages.user2Id">
 
         <h2>Message</h2>
-        <input type="test" id="inputMessage" name="input-message" class="form-control" placeholder="What's up strippes" required autofocus [(ngModel)]="dirMessages.message">
+        <input type="test" id="inputMessage" name="input-message" class="form-control" placeholder="What's up strippes" required [(ngModel)]="dirMessages.message">
 
         <button type="submit">Create DM</button>
     </form>

@@ -1,7 +1,12 @@
 import { Routes, RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
+import { DirMessageComponent } from './components/dir-message/dir-message.component';
 
 const routes: Routes = [
+    {
+        path: '',
+        component: DirMessageComponent
+    }
 ];
 
 @NgModule({
@@ -9,4 +14,4 @@ const routes: Routes = [
     exports: [RouterModule]
 })
 
-export class AppRoutingModule { }
+export class MessageRoutingModule { }
