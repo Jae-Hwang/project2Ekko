@@ -10,6 +10,7 @@ import { PostComponent } from './components/post/post.component';
 import { PostsContainerComponent } from './components/posts-container/posts-container.component';
 import { ReactionComponent } from './components/reaction/reaction.component';
 import { ReactionsContainerComponent } from './components/reactions-container/reactions-container.component';
+import { FriendsPostsContainerComponent } from './components/friends-posts-container/friends-posts-container.component';
 
 
 
@@ -22,7 +23,8 @@ import { ReactionsContainerComponent } from './components/reactions-container/re
     CommentsContainerComponent,
     ReactionsContainerComponent,
     CreateCommentComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    FriendsPostsContainerComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { ReactionsContainerComponent } from './components/reactions-container/re
     CommentsContainerComponent,
     ReactionsContainerComponent,
     CreateCommentComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    FriendsPostsContainerComponent
   ]
 })
 export class PostModule { }

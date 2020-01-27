@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { TestPageComponent } from './shared/test-page/test-page.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './shared/home/home.component';
 
 
 
@@ -23,7 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PageNotFoundComponent,
     NavBarComponent,
     FooterComponent,
-    TestPageComponent
+    TestPageComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
