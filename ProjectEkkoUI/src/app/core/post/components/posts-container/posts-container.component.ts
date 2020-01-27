@@ -33,10 +33,6 @@ export class PostsContainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  postsChange(posts: Post[]) {
-    this.posts = posts;
-  }
-
   pageChange(page: number) {
     this.currentPage = 1;
   }

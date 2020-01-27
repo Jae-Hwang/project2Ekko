@@ -1,5 +1,5 @@
 <div *ngIf='postsFetched()'>
-    <app-create-post [input-posts]='posts' (postsChange)='postsChange($event)' (pageChange)='pageChange($event)'></app-create-post>
+    <app-create-post (pageChange)='pageChange($event)'></app-create-post>
 
     <hr>
 

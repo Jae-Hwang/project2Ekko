@@ -36,10 +36,19 @@ export class CreateCommentComponent implements OnInit, OnDestroy {
   save() {
     if (this.content !== '') {
       this.commentService.save(this.content, this.currentUser.id, this.id);
-      this.comments = [new Comment(0, this.content, this.currentUser, [], new Date())].concat(this.comments);
-      this.commentsChange.emit(this.comments);
+      // this.comments = [new Comment(0, this.content, this.currentUser, [], new Date())].concat(this.comments);
+      // this.commentsChange.emit(this.comments);
       this.content = '';
       this.placeholder = 'Enter New Comment!';
+
+      setTimeout(() => this.commentService.getCommentsByPostIdAsObs(this.id).subscribe(
+        data => {
+          this.commentsChange.emit(data);
+        },
+        err => {
+          console.log(err);
+        }
+      ), 50);
     } else {
       this.placeholder = 'Please Enter Something to Comment!';
     }
