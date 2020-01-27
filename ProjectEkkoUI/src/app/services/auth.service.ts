@@ -42,10 +42,9 @@ export class AuthService {
   }
 
   logout() {
-    //if (this.user !== null || this.user.username !== null) {
       this.currentUserStream.next(null);
-      //this.router.navigateByUrl('');
-    //}
+      this.router.navigateByUrl('/login');
+      this.user = new AppUser(0, null, null);
   }
 
   checkuser() {

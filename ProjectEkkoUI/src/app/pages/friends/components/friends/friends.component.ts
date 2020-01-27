@@ -42,7 +42,7 @@ export class FriendsComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    this.count++;
+    this.count = this.currentTable.length;
     if (this.count > 1) {
       this.friendService.update(this.currentUser.id, this.credentials);
     } else {
