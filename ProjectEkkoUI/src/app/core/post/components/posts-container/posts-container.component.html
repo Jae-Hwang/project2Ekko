@@ -1,1 +1,34 @@
-<p>posts-container works!</p>
+<div *ngIf='postsFetched()'>
+    <app-create-post [input-posts]='posts' (postsChange)='postsChange($event)' (pageChange)='pageChange($event)'></app-create-post>
+
+    <hr>
+
+    <app-post *ngFor='let post of posts' [input-post]='post'></app-post>
+
+    <div class='paging-container' *ngIf='pageType()'>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary" (click)='clickLeft()'>
+                <span name="options" id="option1"> {{"<"}} </span>
+            </label>
+            <label [ngClass]='buttonClass(page)' *ngFor='let page of pageArray' (click)='clickPage(page)'>
+                <span name="options" id="option2"> {{page}} </span>
+            </label>
+            <label class="btn btn-secondary" (click)='clickRight()'>
+                <span name="options" id="option3"> {{">"}} </span>
+            </label>
+        </div>
+    </div>
+    
+    <div class='paging-container' *ngIf='!pageType()'>
+        <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-secondary" id="dropdownBasic1" ngbDropdownToggle>Page</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class='bg-secondary'>
+                <button ngbDropdownItem *ngFor='let page of pageArray' [ngClass]='dropdownClass(page)' (click)='clickPage(page)'> {{page}} </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf='!postsFetched()'>
+    <h1 class='waitin'>Fetching Data, Please Wait :D</h1>
+</div>

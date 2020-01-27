@@ -13,9 +13,9 @@ export class CommentService {
 
   save(content: string, uid: number, id: number) {
     console.log(`Content: ${content}, uid: ${uid}, pid: ${id}`);
-    const comment = new CommentDto(content, uid);
+    const commentDto = new CommentDto(content, uid);
     const url = `http://localhost:8080/ProjectEkko/comments/${id}`;
-    this.httpClient.post(url, comment, {
+    this.httpClient.post(url, commentDto, {
       withCredentials: true
     }).subscribe(
       data => {

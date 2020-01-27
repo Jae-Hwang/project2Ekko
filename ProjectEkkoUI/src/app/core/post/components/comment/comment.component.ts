@@ -3,11 +3,20 @@ import { Comment } from 'src/app/models/comment.model';
 import { AppUser } from 'src/app/models/user.model';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { trigger, transition, animate, style } from '@angular/animations';
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.css']
+  styleUrls: ['./comment.component.css'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({ opacity: 0 }),
+        animate(500, style({ opacity: 1 }))
+      ])
+    ])
+  ]
 })
 export class CommentComponent implements OnInit, OnDestroy {
 

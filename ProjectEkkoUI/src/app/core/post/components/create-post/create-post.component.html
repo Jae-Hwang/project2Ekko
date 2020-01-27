@@ -1,1 +1,10 @@
-<p>create-post works!</p>
+<div class='create-post-container'>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">New Post:</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+        [placeholder]='placeholder' [(ngModel)]='content'></textarea>
+    </div>
+    <div class='button-right'>
+        <button [ngClass]='buttonActive()' (click)='save()'>Submit</button>
+    </div>
+</div>

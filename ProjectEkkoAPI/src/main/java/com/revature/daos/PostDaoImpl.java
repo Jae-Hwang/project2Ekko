@@ -65,6 +65,7 @@ public class PostDaoImpl implements PostDao {
 		CriteriaBuilder cb = s.getCriteriaBuilder();
 		CriteriaQuery<Post> cr = cb.createQuery(Post.class);
 		Root<Post> root = cr.from(Post.class);
+		cr.orderBy(cb.desc(root.get("upserted")));
 
 		// creates query
 		CriteriaQuery<Post> selectedQuery = cr.select(root).where(cb.equal(root.get("owner").get("id"), uid));

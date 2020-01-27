@@ -1,14 +1,14 @@
-<div [ngClass]='class'>
+<div [ngClass]='class' @fade>
     <div class="card-body">
         <div>
             <p class="card-title">{{post.owner.username}}</p>
-            <p class="card-subtitle mb-2 text-muted upserted">{{post.upserted}}</p>
+            <p class="card-subtitle mb-2 text-muted upserted">{{post.upserted | date:'medium'}}</p>
         </div>
         <p class="card-text">{{post.content}}</p>
         <hr>
         <app-reactions-container [input-reactions]='post.reactions' [input-type]='"post"' [input-id]='post.id'></app-reactions-container>
         <hr>
-        <app-create-comment [input-comments]='post.comments' [input-id]='post.id'></app-create-comment>
+        <app-create-comment [input-comments]='post.comments' [input-id]='post.id' (commentsChange)='commentsChange($event)'></app-create-comment>
         <app-comments-container [input-comments]='post.comments' [input-id]='post.id'></app-comments-container>
     </div>
 </div>

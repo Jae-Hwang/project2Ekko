@@ -1,4 +1,4 @@
-export class CommentDto {
+export class PostDto {
 
     constructor(
         public content = '',

@@ -4,11 +4,20 @@ import { Subscription } from 'rxjs';
 import { AppUser } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { ReactionService } from 'src/app/services/reaction.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-reactions-container',
   templateUrl: './reactions-container.component.html',
-  styleUrls: ['./reactions-container.component.css']
+  styleUrls: ['./reactions-container.component.css'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({ opacity: 0 }),
+        animate(500, style({ opacity: 1 }))
+      ])
+    ])
+  ]
 })
 export class ReactionsContainerComponent implements OnInit, OnDestroy {
 

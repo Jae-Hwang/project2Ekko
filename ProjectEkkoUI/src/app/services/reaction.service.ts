@@ -10,7 +10,7 @@ export class ReactionService {
   constructor(private httpClient: HttpClient) { }
 
   save(type: string, uid: number, id: number, reactionType: number) {
-    const reaction = new ReactionDto(uid, reactionType)
+    const reactionDto = new ReactionDto(uid, reactionType);
     let url = '';
     if (type === 'post') {
       url = `http://localhost:8080/ProjectEkko/reactions/posts/${id}`;
@@ -20,7 +20,7 @@ export class ReactionService {
       console.log('Something went very weirdly wrong');
       return;
     }
-    this.httpClient.post(url, reaction, {
+    this.httpClient.post(url, reactionDto, {
       withCredentials: true
     }).subscribe(
       data => {
