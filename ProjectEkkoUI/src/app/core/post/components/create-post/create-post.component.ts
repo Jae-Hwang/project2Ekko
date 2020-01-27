@@ -31,7 +31,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
       this.content = '';
       this.placeholder = 'Enter New Post!';
 
-      setTimeout(() => this.postService.getPostsByUserId(this.currentUser.id, 1), 50);
+      setTimeout(() => this.postService.getPostsByUserId(this.currentUser.id, 1), 100);
       this.pageChange.emit(1);
     } else {
       this.placeholder = 'Please Enter Something to Post!';

@@ -48,7 +48,7 @@ export class CreateCommentComponent implements OnInit, OnDestroy {
         err => {
           console.log(err);
         }
-      ), 50);
+      ), 100);
     } else {
       this.placeholder = 'Please Enter Something to Comment!';
     }

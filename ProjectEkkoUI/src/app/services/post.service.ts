@@ -25,12 +25,15 @@ export class PostService {
     if (this.cache.has(page)) {
       this.postsStream.next(this.cache.get(page));
     } else {
-      this.httpClient.get<Post[]>(`http://localhost:8080/ProjectEkko/posts/${uid}/${page}`, {
-        withCredentials: true
+      this.httpClient.get<any>(`http://localhost:8080/ProjectEkko/posts/${uid}/${page}`, {
+        withCredentials: true,
+        observe: 'response'
       }).subscribe(
         data => {
           console.log(`successfully got posts with user id: ${uid} and page: ${page}`);
-          this.postsStream.next(data);
+          this.postsStream.next(data.body);
+          console.log(`Max Page: ${data.headers.get('X-page')}`);
+          this.maxPageStream.next(parseInt(data.headers.get('X-page'), 0));
         },
         err => {
           console.log(`failed to get posts with user id: ${uid} and page: ${page}`);
@@ -49,6 +52,7 @@ export class PostService {
     }).subscribe(
       data => {
         console.log('Responded Okay');
+        this.cache.clear();
       },
       err => {
         console.log(err);

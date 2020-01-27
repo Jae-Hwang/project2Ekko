@@ -19,8 +19,11 @@ export class PostsContainerComponent implements OnInit, OnDestroy {
   @Input('input-posts')
   posts: Post[];
 
-  currentPage = 2;
-  maxPage = 13;
+  currentPage = 1;
+
+  maxPageSubscription: Subscription;
+  maxPage = 1;
+
   pageArray: number[];
 
   constructor(private postService: PostService, private authService: AuthService) { }
@@ -76,16 +79,24 @@ export class PostsContainerComponent implements OnInit, OnDestroy {
     return (this.posts !== undefined);
   }
 
-  ngOnInit() {
-    this.currentUserSubscription = this.authService.$currentUser.subscribe(user => {
-      this.currentUser = user;
-      this.postService.getPostsByUserId(this.currentUser.id, 1);
-    });
+  setPageArray() {
     this.pageArray = new Array();
 
     for (let i = 1; i <= this.maxPage; i++) {
       this.pageArray.push(i);
     }
+  }
+
+  ngOnInit() {
+    this.currentUserSubscription = this.authService.$currentUser.subscribe(user => {
+      this.currentUser = user;
+      this.postService.getPostsByUserId(this.currentUser.id, 1);
+    });
+
+    this.maxPageSubscription = this.postService.$maxPage.subscribe(maxPage => {
+      this.maxPage = maxPage;
+      this.setPageArray();
+    });
   }
 
   ngOnDestroy() {
