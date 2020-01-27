@@ -23,7 +23,6 @@ export class FriendsService {
 
   save(u,credentials) {
     let user = new AppUser(u, credentials.username, '****');
-    console.log(user);
     this.httpClient.post<AppUser>('http://localhost:8080/ProjectEkko/friends/save', user, {
       withCredentials: true
     }).subscribe(
@@ -51,7 +50,6 @@ export class FriendsService {
       withCredentials: true
     }).subscribe(
       data => {
-        console.log(data);
         this.currentFriendsStream.next(data);
       },
       err => {

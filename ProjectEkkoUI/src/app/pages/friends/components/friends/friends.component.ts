@@ -38,15 +38,13 @@ export class FriendsComponent implements OnInit, OnDestroy {
     this.tableSubscription = this.friendService.$currentFriends.subscribe(user => {
       this.currentTable = user;
     });
-    console.log(this.currentTable);
   }
 
   submit() {
-    this.count = this.currentTable.length;
-    if (this.count > 1) {
-      this.friendService.update(this.currentUser.id, this.credentials);
-    } else {
+    if (this.currentTable === undefined) {
       this.friendService.save(this.currentUser.id, this.credentials);
+    } else {
+      this.friendService.update(this.currentUser.id, this.credentials);
     }
   }
 

@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   register() {
     this.registerService.register(this.credentials);
+    this.router.navigateByUrl('/login');
   }
 
 
