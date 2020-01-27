@@ -23,7 +23,7 @@ public class TestDriverUser {
 		//dao.save(a);
 		User u = dao.findByUsernamePassword("jae", "manager");
 		System.out.println(u);
-		User v = dao.findByUsernamePassword("fermin", "password");
+		User v = dao.findByUsernamePassword("gabby", "manga");
 		System.out.println(v);
 		//User u = dao.FindById(152);
 		//System.out.println(u);
@@ -33,7 +33,7 @@ public class TestDriverUser {
 		//User w = dao.findByUsername("fermin");
 		//System.out.println(w);
 		//fdao.updateFriends(1002, new User(1052,"",""));
-		System.out.println(fdao.findAll(1002));
+		System.out.println(fdao.findAll(v.getId()));
 
 	}
 }
